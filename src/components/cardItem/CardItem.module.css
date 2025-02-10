@@ -1,0 +1,121 @@
+.card {
+  padding: 0.5rem;
+  border: 1px solid rgba(128, 128, 128, 0.1);
+  border-radius: 8px;
+  transition: all 0.4s ease-in-out;
+  display: grid;
+  grid-auto-rows: 70% 30%;
+  gap: 0.5rem;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0.2px;
+  cursor: pointer;
+  max-width: 275px;
+  background-color: white;
+  position: relative;
+}
+
+.card:hover {
+  border-color: #005bff;
+}
+
+.card:hover .name {
+  color: #005bff;
+}
+
+.cardImg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+
+.photo {
+  width: 100%;
+  max-width: 275px;
+  height: 100%;
+}
+
+.priceBlock {
+  display: flex;
+  flex-wrap: wrap;
+  line-gap-override: 4px;
+  align-items: center;
+  margin-block-end: 4px;
+}
+
+.price {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  color: #10c44c;
+}
+
+.oldPrice,
+.percent {
+  margin-left: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  line-height: 20px;
+}
+
+.oldPrice {
+  color: #99a3ae;
+  text-decoration: line-through;
+}
+
+.currency {
+  margin-left: 4px;
+}
+
+.percent {
+  color: #f91155;
+}
+
+.brand,
+.rate {
+  color: rgb(7, 7, 7);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+  letter-spacing: 0.2px;
+  margin-block-end: 4px;
+}
+
+.name {
+  margin-bottom: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  line-clamp: 2;
+  box-orient: vertical;
+  margin-block-end: 4px;
+}
+
+.rate {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  width: fit-content;
+}
+
+.noRate {
+  color: rgba(0, 26, 52, 0.6);
+  font-size: 14px;
+}
+
+.favoriteBtn {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  height: 32px;
+  width: 32px;
+}
