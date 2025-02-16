@@ -8,19 +8,21 @@ export const MainPage = ({
   toggleNavbar,
   handleChangeCategory,
   selectedCategory,
-  filteredProducts,
+  products,
   addToFavorites,
   favoritsIds,
   showNawbar,
+  loading,
 }) => {
   return (
     <>
+      {loading && <p>Loading...</p>}
       <ul className={s.cardList}>
-        {filteredProducts.length === 0 ? (
-          <p>Избранное пусто</p>
+        {products.length === 0 ? (
+          <p>Товаров нет</p>
         ) : (
           <CardItem
-            props={filteredProducts}
+            props={products}
             addToFavorites={addToFavorites}
             favoritsIds={favoritsIds}
           />

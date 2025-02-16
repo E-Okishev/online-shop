@@ -10,7 +10,7 @@ export const FavoritePage = ({ favoriteProducts, addToFavorites, favoritsIds}) =
       <Title text={"Избранное"} />
       <ul className={s.cardList}>
         {favoriteProducts.length === 0 ? (
-          <p>Товаров нет</p>
+          <p>В избранном пусто</p>
         ) : (
           <CardItem props={favoriteProducts} addToFavorites={addToFavorites} favoritsIds={favoritsIds} />
         )}

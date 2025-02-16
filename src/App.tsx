@@ -1,6 +1,6 @@
 // @ts-nocheck
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import s from "./App.module.css";
 import { Route, Routes } from "react-router-dom";
 import { MainPage } from "./pages/main/mainPage";
@@ -14,6 +14,19 @@ export function App() {
   const [showNawbar, setShowNawbar] = useState<boolean>(false);
   const [selectedCategory, setSelectedCategory] = useState<string>("");
   const [favoritsIds, setFavoritsIds] = useState<number[]>([]);
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+    fetch(" http://localhost:5000/products")
+      .then((response) => response.json())
+      .then((result) => {
+        setLoading(false);
+        setProducts(result);
+      })
+      .catch((error) => console.log(error));
+  }, []);
 
   const handleChangeCategory = (changedCategory) => {
     changedCategory === selectedCategory
@@ -25,13 +38,6 @@ export function App() {
   const handleInput = (text: string) => {
     setInputName(text);
   };
-
-  const filteredProducts = products.filter(
-    (item) =>
-      item.category.includes(selectedCategory) &&
-      (item.name?.toLowerCase().includes(inputName.toLowerCase()) ||
-        item.brand?.toLowerCase().includes(inputName.toLowerCase()))
-  );
 
   const toggleNavbar = () => {
     setShowNawbar((prev) => {
@@ -68,10 +74,11 @@ export function App() {
                 toggleNavbar={toggleNavbar}
                 handleChangeCategory={handleChangeCategory}
                 selectedCategory={selectedCategory}
-                filteredProducts={filteredProducts}
+                products={products}
                 addToFavorites={addToFavorites}
                 favoritsIds={favoritsIds}
                 showNawbar={showNawbar}
+                loading={loading}
               />
             }
           />
