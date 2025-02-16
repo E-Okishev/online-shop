@@ -3,14 +3,16 @@
 import logo from "../../img/logo.svg";
 import icon from "../../img/buttonIcon.svg";
 import s from "./Header.module.css";
+import { FavoriteIcon } from "../favoriteIcon/FavoriteIcon";
+import { Link } from "react-router-dom";
 
-export function Header({ handleInput, togleNawbar }) {
+export function Header({ handleInput, toggleNavbar }) {
   return (
     <header className={s.header}>
-      <a href="/">
+      <Link to="/">
         <img src={logo} alt="Logo" />
-      </a>
-      <button className={s.catalogButton} onClick={togleNawbar}>
+      </Link>
+      <button className={s.catalogButton} onClick={toggleNavbar}>
         <img src={icon} alt="icon" />
         <p>Каталог</p>
       </button>
@@ -20,7 +22,12 @@ export function Header({ handleInput, togleNawbar }) {
         placeholder="Поиск"
         onChange={(e) => handleInput(e.target.value)}
       />
-      <div>header</div>
+      <Link className={s.link} to="/favorites">
+        <div className={s.favoriteIcon}>
+          <FavoriteIcon />
+          <span className={s.favoriteText}>Избранное</span>
+        </div>
+      </Link>
     </header>
   );
 }

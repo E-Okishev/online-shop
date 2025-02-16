@@ -3,7 +3,6 @@
 import s from './Navbar.module.css'
 
 export const Navbar = ({handleChangeCategory, selectedCategory}) => {
-
   return (
     <div className={s.navbar}>
       <ul>

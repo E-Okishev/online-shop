@@ -2,10 +2,12 @@
 
 import { useState } from "react";
 import s from "./App.module.css";
-import { CardItem } from "./components/cardItem/CardItem";
-import { Header } from "./components/header/Header";
+import { Route, Routes } from "react-router-dom";
+import { MainPage } from "./pages/main/mainPage";
 import { products } from "./data";
+import { Header } from "./components/header/Header";
 import { Navbar } from "./components/navbar/Navbar";
+import { FavoritePage } from "./pages/favorite/favoritePage";
 
 export function App() {
   const [inputName, setInputName] = useState<string>("");
@@ -17,10 +19,10 @@ export function App() {
     changedCategory === selectedCategory
       ? setSelectedCategory("")
       : setSelectedCategory(changedCategory);
-    togleNawbar();
+    setShowNawbar(false);
   };
 
-  const handleInput = (text: string): string => {
+  const handleInput = (text: string) => {
     setInputName(text);
   };
 
@@ -31,8 +33,10 @@ export function App() {
         item.brand?.toLowerCase().includes(inputName.toLowerCase()))
   );
 
-  const togleNawbar = () => {
-    setShowNawbar(!showNawbar);
+  const toggleNavbar = () => {
+    setShowNawbar((prev) => {
+      return !prev;
+    });
   };
 
   const addToFavorites = (id) => {
@@ -41,29 +45,47 @@ export function App() {
       : setFavoritsIds([...favoritsIds, id]);
   };
 
-  console.log(favoritsIds);
+  const favoriteProducts = products.filter((product) =>
+    favoritsIds.includes(product.id)
+  );
 
   return (
     <>
-      <Header handleInput={handleInput} togleNawbar={togleNawbar} />
+      <Header handleInput={handleInput} toggleNavbar={toggleNavbar} />
       {showNawbar && (
         <Navbar
           handleChangeCategory={handleChangeCategory}
           selectedCategory={selectedCategory}
         />
       )}
-      <main>
-        <ul className={s.cardList}>
-          {filteredProducts.length === 0 ? (
-            <p>Товаров нет</p>
-          ) : (
-            <CardItem
-              props={filteredProducts}
-              addToFavorites={addToFavorites}
-              favoritsIds={favoritsIds}
-            />
-          )}
-        </ul>
+      <main className={s.main}>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <MainPage
+                handleInput={handleInput}
+                toggleNavbar={toggleNavbar}
+                handleChangeCategory={handleChangeCategory}
+                selectedCategory={selectedCategory}
+                filteredProducts={filteredProducts}
+                addToFavorites={addToFavorites}
+                favoritsIds={favoritsIds}
+                showNawbar={showNawbar}
+              />
+            }
+          />
+          <Route
+            path="/favorites"
+            element={
+              <FavoritePage
+                favoriteProducts={favoriteProducts}
+                addToFavorites={addToFavorites}
+                favoritsIds={favoritsIds}
+              />
+            }
+          />
+        </Routes>
       </main>
     </>
   );

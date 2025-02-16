@@ -1,9 +1,13 @@
 // @ts-nocheck
+
 import star from "../../img/rateStar.svg";
 import { FavoriteIcon } from "../favoriteIcon/FavoriteIcon";
 import s from "./CardItem.module.css";
 
 export function CardItem({ props, addToFavorites, favoritsIds }) {
+
+  console.log('favoritsIds', favoritsIds);
+  
   const salePercent = (price, newPrice) => {
     return Math.round((newPrice * 100) / price - 100);
   };
@@ -16,9 +20,12 @@ export function CardItem({ props, addToFavorites, favoritsIds }) {
     <>
       {props.map((item) => (
         <li className={s.card} key={item.id}>
-          <button className={s.favoriteBtn} onClick={() => addToFavorites(item.id)}>
-            <FavoriteIcon active={favoritsIds.includes(item.id)} />
-          </button>
+            <button
+              className={s.favoriteBtn}
+              onClick={() => addToFavorites(item.id)}
+            >
+              <FavoriteIcon active={favoritsIds.includes(item.id)} />
+            </button>
           <div className={s.cardImg}>
             <img className={s.photo} src={item.photo} alt={item.name} />
           </div>
