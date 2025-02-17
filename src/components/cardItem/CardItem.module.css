@@ -12,6 +12,8 @@
   cursor: pointer;
   max-width: 275px;
   background-color: white;
+  max-height: -webkit-fill-available;
+  height: 100%;
   position: relative;
 }
 

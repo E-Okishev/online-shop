@@ -1,6 +1,7 @@
 // @ts-nocheck
 
 import { CardItem } from "../../components/cardItem/CardItem";
+import { Title } from "../../components/title/Title";
 import s from "./mainPage.module.css";
 
 export const MainPage = ({
@@ -16,18 +17,27 @@ export const MainPage = ({
 }) => {
   return (
     <>
+      {selectedCategory ? (
+        <Title text={selectedCategory} />
+      ) : (
+        <Title text={"Все товары"} />
+      )}
       {loading && <p>Loading...</p>}
-      <ul className={s.cardList}>
-        {products.length === 0 ? (
-          <p>Товаров нет</p>
-        ) : (
-          <CardItem
-            props={products}
-            addToFavorites={addToFavorites}
-            favoritsIds={favoritsIds}
-          />
-        )}
-      </ul>
+      {products.length === 0 ? (
+        <p>Товаров нет</p>
+      ) : (
+        <ul className={s.cardList}>
+          {products.map((product) => (
+            <li key={product.id}>
+              <CardItem
+                product={product}
+                addToFavorites={addToFavorites}
+                favoritsIds={favoritsIds}
+              />
+            </li>
+          ))}
+        </ul>
+      )}
     </>
   );
 };
