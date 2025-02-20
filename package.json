@@ -11,9 +11,11 @@
     "server": "json-server --watch db.json -p 5000"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.5.1",
     "json-server": "^0.17.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-redux": "^9.2.0",
     "react-router-dom": "^7.1.5"
   },
   "devDependencies": {

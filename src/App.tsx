@@ -8,39 +8,42 @@ import { products } from "./data";
 import { Header } from "./components/header/Header";
 import { Navbar } from "./components/navbar/Navbar";
 import { FavoritePage } from "./pages/favorite/favoritePage";
+import { fetchFavorites } from "./slices/favoritesSlice";
+import { useDispatch, useSelector } from "react-redux";
+
+export const BASE_URL = "http://localhost:5000";
 
 export function App() {
   const [inputName, setInputName] = useState<string>("");
   const [showNawbar, setShowNawbar] = useState<boolean>(false);
   const [selectedCategory, setSelectedCategory] = useState<string>("");
-  const [favoriteProducts, setFavoriteProducts] = useState<number[]>([]);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
+  const favorites = useSelector((state: RootState) => state.favorite.favorites);
 
-  useEffect(() => {
+  const loadProduct = async () => {
     setLoading(true);
-    fetch(
-      `http://localhost:5000/products?q=${inputName}&category_like=${selectedCategory}`
-    )
-      .then((response) => response.json())
-      .then((result) => {
-        setLoading(false);
-        setProducts(result);
-      })
-      .catch((error) => console.error(error));
-  }, [inputName, selectedCategory]);
-
-  const loadFavorites = () => {
-    fetch(`http://localhost:5000/favorites`)
-      .then((response) => response.json())
-      .then((result) => {
-        setFavoriteProducts(result);
-      })
-      .catch((error) => console.error(error));
+    try {
+      const response = await fetch(
+        `${BASE_URL}/products?q=${inputName}&category_like=${selectedCategory}`
+      );
+      const result = await response.json();
+      setLoading(false);
+      setProducts(result);
+    } catch (error) {
+      setLoading(false);
+      console.error("error", error);
+    }
   };
 
   useEffect(() => {
-    loadFavorites();
+    loadProduct();
+  }, [inputName, selectedCategory]);
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(fetchFavorites())
   }, []);
 
   const handleChangeCategory = (changedCategory) => {
@@ -61,18 +64,18 @@ export function App() {
   };
 
   const addToFavorites = (product) => {
-    if (favoriteProducts.some((e) => e.id === product.id)) {
-      fetch(`http://localhost:5000/favorites/${product.id}`, {
+    if (favorites.some((e) => e.id === product.id)) {
+      fetch(`${BASE_URL}/favorites/${product.id}`, {
         method: "DELETE",
-      }).then((result) => loadFavorites());
+      }).then((result) => dispatch(fetchFavorites()));
     } else {
-      fetch(`http://localhost:5000/favorites`, {
+      fetch(`${BASE_URL}/favorites`, {
         method: "POST",
         body: JSON.stringify(product),
         headers: {
           "Content-type": "application/json",
         },
-      }).then((result) => loadFavorites());
+      }).then((result) => dispatch(fetchFavorites()));
     }
   };
 
@@ -97,7 +100,7 @@ export function App() {
                 selectedCategory={selectedCategory}
                 products={products}
                 addToFavorites={addToFavorites}
-                favoritsIds={favoriteProducts.map((i) => i.id)}
+                favoritsIds={favorites.map((i) => i.id)}
                 showNawbar={showNawbar}
                 loading={loading}
               />
@@ -107,10 +110,15 @@ export function App() {
             path="/favorites"
             element={
               <FavoritePage
-                favoriteProducts={favoriteProducts}
                 addToFavorites={addToFavorites}
-                favoritsIds={favoriteProducts.map((i) => i.id)}
+                favoritsIds={favorites.map((i) => i.id)}
               />
+            }
+          />
+          <Route
+            path="*"
+            element={
+              <h1>404</h1>
             }
           />
         </Routes>

@@ -237,30 +237,63 @@
       "category": "phone",
       "rating": 4.9,
       "photo": "https://ir.ozone.ru/s3/multimedia-1-g/wc1000/7175024068.jpg"
+    },
+    {
+      "id": 23,
+      "brand": "MSI",
+      "name": "MSI 15 B12UC-1628XRU Игровой ноутбук 15.6\", Intel Core i7-12650H, RAM 16 ГБ, SSD 512 ГБ, NVIDIA GeForce RTX 3050 для ноутбуков (4 Гб), Без системы, (9S7-16R831-1628)",
+      "price": 126990,
+      "newPrice": 88037,
+      "currency": "₽",
+      "category": "laptop",
+      "rating": 5,
+      "photo": "https://ir.ozone.ru/s3/multimedia-1-y/wc1000/7243874782.jpg"
+    },
+    {
+      "id": 24,
+      "brand": "Apple",
+      "name": "MacBook Air 13 M2 (8C CPU, 10C GPU) Ноутбук 13.6\", Apple M2 (8C CPU, 10C GPU), RAM 8 ГБ, SSD 512 ГБ, Apple M2, MacOS, (MLY23RU/A)",
+      "price": 140590,
+      "newPrice": 128240,
+      "currency": "₽",
+      "category": "laptop",
+      "rating": 5,
+      "photo": "https://ir.ozone.ru/s3/multimedia-1-6/wc1000/7269938598.jpg"
+    },
+    {
+      "id": 25,
+      "brand": "KV",
+      "name": "ECOM FIX111 Ноутбук 14\", Intel Celeron N3350, RAM 6 ГБ, SSD 128 ГБ, AMD Radeon, серый металлик",
+      "price": 50000,
+      "newPrice": 21177,
+      "currency": "₽",
+      "category": "laptop",
+      "rating": 3.1,
+      "photo": "https://ir.ozone.ru/s3/multimedia-1-x/wc1000/7233371709.jpg"
     }
   ],
   "favorites": [
     {
-      "id": 1,
-      "brand": "Samsung",
-      "name": "Galaxy S25 Ultra 12/1 ТБ",
-      "price": 238339,
-      "newPrice": 210043,
+      "id": 24,
+      "brand": "Apple",
+      "name": "MacBook Air 13 M2 (8C CPU, 10C GPU) Ноутбук 13.6\", Apple M2 (8C CPU, 10C GPU), RAM 8 ГБ, SSD 512 ГБ, Apple M2, MacOS, (MLY23RU/A)",
+      "price": 140590,
+      "newPrice": 128240,
       "currency": "₽",
-      "category": "phone",
+      "category": "laptop",
       "rating": 5,
-      "photo": "https://ir.ozone.ru/s3/multimedia-1-4/wc1000/7302914176.jpg"
+      "photo": "https://ir.ozone.ru/s3/multimedia-1-6/wc1000/7269938598.jpg"
     },
     {
-      "id": 2,
+      "id": 5,
       "brand": "Apple",
-      "name": "iPhone 15 SIM+eSIM 128 ГБ",
-      "price": 89990,
-      "newPrice": 86029,
+      "name": "MacBook Pro 14 (2024) Ноутбук 14.2\", Apple M4, RAM 16 ГБ, SSD 1024 ГБ, MacOS",
+      "price": 248009,
+      "newPrice": 232836,
       "currency": "₽",
-      "category": "phone",
-      "rating": 4.8,
-      "photo": "https://ir.ozone.ru/s3/multimedia-1/wc1000/6759283957.jpg"
+      "category": "laptop",
+      "rating": 0,
+      "photo": "https://ir.ozone.ru/s3/multimedia-1-q/wc1000/7196945606.jpg"
     }
   ]
 }

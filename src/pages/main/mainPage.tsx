@@ -22,8 +22,9 @@ export const MainPage = ({
       ) : (
         <Title text={"Все товары"} />
       )}
-      {loading && <p>Loading...</p>}
-      {products.length === 0 ? (
+      {loading ? (
+        <p>Loading...</p>
+      ) : products.length === 0 ? (
         <p>Товаров нет</p>
       ) : (
         <ul className={s.cardList}>

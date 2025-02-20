@@ -1,5 +1,6 @@
 // @ts-nocheck
 
+import { useDispatch, useSelector } from "react-redux";
 import star from "../../img/rateStar.svg";
 import { FavoriteIcon } from "../favoriteIcon/FavoriteIcon";
 import s from "./CardItem.module.css";
