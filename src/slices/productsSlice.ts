@@ -1,7 +1,6 @@
 // @ts-nocheck
 
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-// import type { PayloadAction } from "@reduxjs/toolkit";
 import { BASE_URL } from "../App";
 import favoritesSlice from "./favoritesSlice";
 

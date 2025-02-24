@@ -34,17 +34,16 @@ export const MainPage = ({
       ) : products.length === 0 ? (
         <p>Товаров нет</p>
       ) : (
-        <ul className={s.cardList}>
+        <div className={s.cardList}>
           {products.map((product) => (
-            <li key={product.id}>
-              <CardItem
-                product={product}
-                onClickFavorites={onClickFavorites}
-                favoritsIds={favoritsIds}
-              />
-            </li>
+            <CardItem
+              key={product.id}
+              product={product}
+              onClickFavorites={onClickFavorites}
+              favoritsIds={favoritsIds}
+            />
           ))}
-        </ul>
+        </div>
       )}
     </>
   );

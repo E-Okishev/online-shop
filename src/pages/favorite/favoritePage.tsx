@@ -3,7 +3,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { CardItem } from "../../components/cardItem/CardItem";
 import { Title } from "../../components/title/Title";
-import s from "./favoritePage.module.css";
+import s from "../main/mainPage.module.css";
 import { favoritesSlice } from "../../slices/favoritesSlice";
 
 export const FavoritePage = ({ onClickFavorites, favoritsIds }) => {
@@ -25,17 +25,16 @@ export const FavoritePage = ({ onClickFavorites, favoritsIds }) => {
       ) : favorites.length === 0 ? (
         <p>В избранном пусто</p>
       ) : (
-        <ul className={s.cardList}>
+        <div className={s.cardList}>
           {favorites.map((product) => (
-            <li className={s.card} key={product.id}>
-              <CardItem
-                product={product}
-                onClickFavorites={onClickFavorites}
-                favoritsIds={favorites.map((i) => i.id)}
-              />
-            </li>
+            <CardItem
+              key={product.id}
+              product={product}
+              onClickFavorites={onClickFavorites}
+              favoritsIds={favorites.map((i) => i.id)}
+            />
           ))}
-        </ul>
+        </div>
       )}
     </>
   );

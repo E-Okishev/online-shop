@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import star from "../../img/rateStar.svg";
 import { FavoriteIcon } from "../favoriteIcon/FavoriteIcon";
 import s from "./CardItem.module.css";
+import { CartIcon } from "../cartIcon/CartIcon";
 
 export function CardItem({ product, onClickFavorites, favoritsIds }) {
   const salePercent = (price, newPrice) => {
@@ -27,18 +28,23 @@ export function CardItem({ product, onClickFavorites, favoritsIds }) {
   } = product;
   return (
     <div className={s.card}>
-      <button className={s.favoriteBtn} onClick={() => onClickFavorites(product)}>
+      <button
+        className={s.favoriteBtn}
+        onClick={() => onClickFavorites(product)}
+      >
         <FavoriteIcon active={favoritsIds.includes(id)} />
       </button>
       <div className={s.cardImg}>
         <img className={s.photo} src={photo} alt={name} />
       </div>
-      <div>
+      <div className={s.description}>
         {!newPrice ? (
-          <p className={s.price}>
-            {formatedPrice(price)}
-            <span className={s.currency}>{currency}</span>
-          </p>
+          <div className={s.priceBlock}>
+            <p className={s.price}>
+              {formatedPrice(price)}
+              <span className={s.currency}>{currency}</span>
+            </p>
+          </div>
         ) : (
           <div className={s.priceBlock}>
             <p className={s.price}>
@@ -62,6 +68,11 @@ export function CardItem({ product, onClickFavorites, favoritsIds }) {
             {rating}
           </p>
         )}
+        <div className={s.buttonBlock}>
+          <button className={s.cartButton} type="button">
+            <CartIcon />В корзину
+          </button>
+        </div>
       </div>
     </div>
   );

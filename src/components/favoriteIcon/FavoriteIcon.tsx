@@ -1,7 +1,5 @@
 // @ts-nocheck
 
-import s from "./FavoriteIcon.module.css";
-
 export const FavoriteIcon = ({active}) => {
   return (
       <svg
