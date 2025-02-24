@@ -8,8 +8,9 @@ import { products } from "./data";
 import { Header } from "./components/header/Header";
 import { Navbar } from "./components/navbar/Navbar";
 import { FavoritePage } from "./pages/favorite/favoritePage";
-import { fetchFavorites } from "./slices/favoritesSlice";
+import { addToFavorites, deleteFavorites, fetchFavorites } from "./slices/favoritesSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { fetchProducts } from "./slices/productsSlice";
 
 export const BASE_URL = "http://localhost:5000";
 
@@ -17,33 +18,17 @@ export function App() {
   const [inputName, setInputName] = useState<string>("");
   const [showNawbar, setShowNawbar] = useState<boolean>(false);
   const [selectedCategory, setSelectedCategory] = useState<string>("");
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const favorites = useSelector((state: RootState) => state.favorite.favorites);
 
-  const loadProduct = async () => {
-    setLoading(true);
-    try {
-      const response = await fetch(
-        `${BASE_URL}/products?q=${inputName}&category_like=${selectedCategory}`
-      );
-      const result = await response.json();
-      setLoading(false);
-      setProducts(result);
-    } catch (error) {
-      setLoading(false);
-      console.error("error", error);
-    }
-  };
+  const favorites = useSelector((state: RootState) => state.favorite.favorites);
+  const products = useSelector((state: RootState) => state.product.products);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    loadProduct();
+    dispatch(fetchProducts({ inputName, selectedCategory }));
   }, [inputName, selectedCategory]);
 
-  const dispatch = useDispatch()
-
   useEffect(() => {
-    dispatch(fetchFavorites())
+    dispatch(fetchFavorites());
   }, []);
 
   const handleChangeCategory = (changedCategory) => {
@@ -63,19 +48,11 @@ export function App() {
     });
   };
 
-  const addToFavorites = (product) => {
+  const onClickFavorites = (product) => {
     if (favorites.some((e) => e.id === product.id)) {
-      fetch(`${BASE_URL}/favorites/${product.id}`, {
-        method: "DELETE",
-      }).then((result) => dispatch(fetchFavorites()));
+      dispatch(deleteFavorites(product.id));
     } else {
-      fetch(`${BASE_URL}/favorites`, {
-        method: "POST",
-        body: JSON.stringify(product),
-        headers: {
-          "Content-type": "application/json",
-        },
-      }).then((result) => dispatch(fetchFavorites()));
+      dispatch(addToFavorites(product));
     }
   };
 
@@ -99,10 +76,9 @@ export function App() {
                 handleChangeCategory={handleChangeCategory}
                 selectedCategory={selectedCategory}
                 products={products}
-                addToFavorites={addToFavorites}
+                onClickFavorites={onClickFavorites}
                 favoritsIds={favorites.map((i) => i.id)}
                 showNawbar={showNawbar}
-                loading={loading}
               />
             }
           />
@@ -110,17 +86,12 @@ export function App() {
             path="/favorites"
             element={
               <FavoritePage
-                addToFavorites={addToFavorites}
+                onClickFavorites={onClickFavorites}
                 favoritsIds={favorites.map((i) => i.id)}
               />
             }
           />
-          <Route
-            path="*"
-            element={
-              <h1>404</h1>
-            }
-          />
+          <Route path="*" element={<h1>404</h1>} />
         </Routes>
       </main>
     </>

@@ -5,7 +5,7 @@ import star from "../../img/rateStar.svg";
 import { FavoriteIcon } from "../favoriteIcon/FavoriteIcon";
 import s from "./CardItem.module.css";
 
-export function CardItem({ product, addToFavorites, favoritsIds }) {
+export function CardItem({ product, onClickFavorites, favoritsIds }) {
   const salePercent = (price, newPrice) => {
     return Math.round((newPrice * 100) / price - 100);
   };
@@ -27,7 +27,7 @@ export function CardItem({ product, addToFavorites, favoritsIds }) {
   } = product;
   return (
     <div className={s.card}>
-      <button className={s.favoriteBtn} onClick={() => addToFavorites(product)}>
+      <button className={s.favoriteBtn} onClick={() => onClickFavorites(product)}>
         <FavoriteIcon active={favoritsIds.includes(id)} />
       </button>
       <div className={s.cardImg}>

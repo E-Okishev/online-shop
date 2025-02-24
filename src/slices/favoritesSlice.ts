@@ -6,7 +6,7 @@ import { BASE_URL } from "../App";
 
 export const fetchFavorites = createAsyncThunk(
   "products/fetchFavorites",
-  async (userId: number, thunkAPI) => {
+  async (param, thunkAPI) => {
     const response = await fetch(`${BASE_URL}/favorites`);
     const result = await response.json();
 
@@ -14,7 +14,31 @@ export const fetchFavorites = createAsyncThunk(
   }
 );
 
-const initialState: CounterState = {
+export const addToFavorites = createAsyncThunk(
+  "products/addToFavorites",
+  async (product, thunkAPI) => {
+    await fetch(`${BASE_URL}/favorites`, {
+      method: "POST",
+      body: JSON.stringify(product),
+      headers: {
+        "Content-type": "application/json",
+      },
+    });
+    thunkAPI.dispatch(fetchFavorites());
+  }
+);
+
+export const deleteFavorites = createAsyncThunk(
+  "products/deleteFavorites",
+  async (id, thunkAPI) => {
+    await fetch(`${BASE_URL}/favorites/${id}`, {
+      method: "DELETE",
+    });
+    thunkAPI.dispatch(fetchFavorites());
+  }
+);
+
+const initialState = {
   favoritesLoading: false,
   favoritesError: false,
   favorites: [],
@@ -29,8 +53,7 @@ export const favoritesSlice = createSlice({
     });
     builder.addCase(fetchFavorites.fulfilled, (state, action) => {
       state.favoritesLoading = false;
-      const dataFromServer = action.payload;
-      state.favorites = dataFromServer;
+      state.favorites = action.payload;
     });
     builder.addCase(fetchFavorites.rejected, (state, action) => {
       state.favoritesLoading = false;
@@ -39,5 +62,4 @@ export const favoritesSlice = createSlice({
   },
 });
 
-export const { loadFavorites } = favoritesSlice.actions;
 export default favoritesSlice.reducer;

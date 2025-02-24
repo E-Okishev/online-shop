@@ -6,7 +6,7 @@ import { Title } from "../../components/title/Title";
 import s from "./favoritePage.module.css";
 import { favoritesSlice } from "../../slices/favoritesSlice";
 
-export const FavoritePage = ({ addToFavorites, favoritsIds }) => {
+export const FavoritePage = ({ onClickFavorites, favoritsIds }) => {
   const favorites = useSelector((state: RootState) => state.favorite.favorites);
   const favoritesLoading = useSelector(
     (state: RootState) => state.favorite.favoritesLoading
@@ -30,7 +30,7 @@ export const FavoritePage = ({ addToFavorites, favoritsIds }) => {
             <li className={s.card} key={product.id}>
               <CardItem
                 product={product}
-                addToFavorites={addToFavorites}
+                onClickFavorites={onClickFavorites}
                 favoritsIds={favoritsIds}
               />
             </li>

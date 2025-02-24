@@ -1,5 +1,6 @@
 // @ts-nocheck
 
+import { useSelector } from "react-redux";
 import { CardItem } from "../../components/cardItem/CardItem";
 import { Title } from "../../components/title/Title";
 import s from "./mainPage.module.css";
@@ -10,11 +11,15 @@ export const MainPage = ({
   handleChangeCategory,
   selectedCategory,
   products,
-  addToFavorites,
+  onClickFavorites,
   favoritsIds,
   showNawbar,
-  loading,
 }) => {
+
+  const loading = useSelector(
+    (state: RootState) => state.product.productsLoading
+  );
+
   return (
     <>
       {selectedCategory ? (
@@ -32,7 +37,7 @@ export const MainPage = ({
             <li key={product.id}>
               <CardItem
                 product={product}
-                addToFavorites={addToFavorites}
+                onClickFavorites={onClickFavorites}
                 favoritsIds={favoritsIds}
               />
             </li>
