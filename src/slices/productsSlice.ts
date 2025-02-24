@@ -8,9 +8,11 @@ import favoritesSlice from "./favoritesSlice";
 export const fetchProducts = createAsyncThunk(
   "products/fetchProducts",
   async (params, thunkAPI) => {
-    const {inputName, selectedCategory} = params
+    const { inputName, selectedCategory, sort } = params;
+
+    const sortQuery = sort ? `&_sort=price&_order=${sort}` : '';
     const response = await fetch(
-      `${BASE_URL}/products?q=${inputName}&category_like=${selectedCategory}`
+      `${BASE_URL}/products?q=${inputName}&category_like=${selectedCategory}${sortQuery}`
     );
     const result = await response.json();
     return result;

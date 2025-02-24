@@ -1,20 +1,21 @@
 // @ts-nocheck
 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { CardItem } from "../../components/cardItem/CardItem";
 import { Title } from "../../components/title/Title";
 import s from "./mainPage.module.css";
+import { Sort } from "../../components/sort/Sort";
 
 export const MainPage = ({
   handleInput,
-  toggleNavbar,
   handleChangeCategory,
   selectedCategory,
-  products,
   onClickFavorites,
   favoritsIds,
-  showNawbar,
+  handleChangeSort,
 }) => {
+  const products = useSelector((state: RootState) => state.product.products);
+  const dispatch = useDispatch();
 
   const loading = useSelector(
     (state: RootState) => state.product.productsLoading
@@ -27,6 +28,7 @@ export const MainPage = ({
       ) : (
         <Title text={"Все товары"} />
       )}
+      <Sort handleChangeSort={handleChangeSort} />
       {loading ? (
         <p>Loading...</p>
       ) : products.length === 0 ? (

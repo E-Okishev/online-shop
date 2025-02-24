@@ -31,7 +31,7 @@ export const FavoritePage = ({ onClickFavorites, favoritsIds }) => {
               <CardItem
                 product={product}
                 onClickFavorites={onClickFavorites}
-                favoritsIds={favoritsIds}
+                favoritsIds={favorites.map((i) => i.id)}
               />
             </li>
           ))}

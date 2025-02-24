@@ -4,11 +4,14 @@ import { useEffect, useState } from "react";
 import s from "./App.module.css";
 import { Route, Routes } from "react-router-dom";
 import { MainPage } from "./pages/main/mainPage";
-import { products } from "./data";
 import { Header } from "./components/header/Header";
 import { Navbar } from "./components/navbar/Navbar";
 import { FavoritePage } from "./pages/favorite/favoritePage";
-import { addToFavorites, deleteFavorites, fetchFavorites } from "./slices/favoritesSlice";
+import {
+  addToFavorites,
+  deleteFavorites,
+  fetchFavorites,
+} from "./slices/favoritesSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "./slices/productsSlice";
 
@@ -18,14 +21,14 @@ export function App() {
   const [inputName, setInputName] = useState<string>("");
   const [showNawbar, setShowNawbar] = useState<boolean>(false);
   const [selectedCategory, setSelectedCategory] = useState<string>("");
+  const [sort, setSort] = useState<string>("");
 
   const favorites = useSelector((state: RootState) => state.favorite.favorites);
-  const products = useSelector((state: RootState) => state.product.products);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchProducts({ inputName, selectedCategory }));
-  }, [inputName, selectedCategory]);
+    dispatch(fetchProducts({ inputName, selectedCategory, sort }));
+  }, [inputName, selectedCategory, sort]);
 
   useEffect(() => {
     dispatch(fetchFavorites());
@@ -56,6 +59,10 @@ export function App() {
     }
   };
 
+  const handleChangeSort = (order) => {
+    setSort(order)
+  }
+  
   return (
     <>
       <Header handleInput={handleInput} toggleNavbar={toggleNavbar} />
@@ -71,14 +78,12 @@ export function App() {
             path="/"
             element={
               <MainPage
+              handleChangeSort={handleChangeSort}
                 handleInput={handleInput}
-                toggleNavbar={toggleNavbar}
                 handleChangeCategory={handleChangeCategory}
                 selectedCategory={selectedCategory}
-                products={products}
                 onClickFavorites={onClickFavorites}
                 favoritsIds={favorites.map((i) => i.id)}
-                showNawbar={showNawbar}
               />
             }
           />
