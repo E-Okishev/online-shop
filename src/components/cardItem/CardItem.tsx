@@ -2,11 +2,17 @@
 
 import { useDispatch, useSelector } from "react-redux";
 import star from "../../img/rateStar.svg";
-import { FavoriteIcon } from "../favoriteIcon/FavoriteIcon";
+import { FavoriteIconWithCard } from "../FavoriteIconWithCard/FavoriteIconWithCard.tsx";
 import s from "./CardItem.module.css";
 import { CartIcon } from "../cartIcon/CartIcon";
 
-export function CardItem({ product, onClickFavorites, favoritsIds }) {
+export function CardItem({
+  product,
+  onClickFavorites,
+  onClickAddToCard,
+  favoritsIds,
+  cartIds,
+}) {
   const salePercent = (price, newPrice) => {
     return Math.round((newPrice * 100) / price - 100);
   };
@@ -26,13 +32,18 @@ export function CardItem({ product, onClickFavorites, favoritsIds }) {
     rating,
     photo,
   } = product;
+
+  const styleButton = cartIds.includes(id)
+    ? `${s.cartButton} ${s.active}`
+    : `${s.cartButton}`;
+
   return (
     <div className={s.card}>
       <button
         className={s.favoriteBtn}
         onClick={() => onClickFavorites(product)}
       >
-        <FavoriteIcon active={favoritsIds.includes(id)} />
+        <FavoriteIconWithCard active={favoritsIds.includes(id)} />
       </button>
       <div className={s.cardImg}>
         <img className={s.photo} src={photo} alt={name} />
@@ -69,8 +80,18 @@ export function CardItem({ product, onClickFavorites, favoritsIds }) {
           </p>
         )}
         <div className={s.buttonBlock}>
-          <button className={s.cartButton} type="button">
-            <CartIcon />В корзину
+          <button
+            className={styleButton}
+            type="button"
+            onClick={() => onClickAddToCard(product)}
+          >
+            {cartIds.includes(id) ? (
+              `В корзине`
+            ) : (
+              <>
+                <CartIcon /> В корзину
+              </>
+            )}
           </button>
         </div>
       </div>

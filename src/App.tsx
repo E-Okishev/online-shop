@@ -3,10 +3,8 @@
 import { useEffect, useState } from "react";
 import s from "./App.module.css";
 import { Route, Routes } from "react-router-dom";
-import { MainPage } from "./pages/main/mainPage";
 import { Header } from "./components/header/Header";
 import { Navbar } from "./components/navbar/Navbar";
-import { FavoritePage } from "./pages/favorite/favoritePage";
 import {
   addToFavorites,
   deleteFavorites,
@@ -14,6 +12,11 @@ import {
 } from "./slices/favoritesSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "./slices/productsSlice";
+
+import { FavoritePage } from "./pages/favorite";
+import { MainPage } from "./pages/main";
+import { CartPage } from "./pages/cartPage";
+import { loadCart, addToCart, deleteCart } from "./slices/cartSlice";
 
 export const BASE_URL = "http://localhost:5000";
 
@@ -24,6 +27,8 @@ export function App() {
   const [sort, setSort] = useState<string>("");
 
   const favorites = useSelector((state: RootState) => state.favorite.favorites);
+  const cartItems = useSelector((state: RootState) => state.cart.cart);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -32,6 +37,7 @@ export function App() {
 
   useEffect(() => {
     dispatch(fetchFavorites());
+    dispatch(loadCart());
   }, []);
 
   const handleChangeCategory = (changedCategory) => {
@@ -59,10 +65,18 @@ export function App() {
     }
   };
 
+  const onClickAddToCard = (product) => {
+    if (cartItems.some((e) => e.id === product.id)) {
+      dispatch(deleteCart(product.id));
+    } else {
+      dispatch(addToCart(product));
+    }
+  };
+
   const handleChangeSort = (order) => {
-    setSort(order)
-  }
-  
+    setSort(order);
+  };
+
   return (
     <>
       <Header handleInput={handleInput} toggleNavbar={toggleNavbar} />
@@ -78,12 +92,14 @@ export function App() {
             path="/"
             element={
               <MainPage
-              handleChangeSort={handleChangeSort}
+                handleChangeSort={handleChangeSort}
                 handleInput={handleInput}
                 handleChangeCategory={handleChangeCategory}
                 selectedCategory={selectedCategory}
                 onClickFavorites={onClickFavorites}
+                onClickAddToCard={onClickAddToCard}
                 favoritsIds={favorites.map((i) => i.id)}
+                cartIds={cartItems.map((i) => i.id)}
               />
             }
           />
@@ -92,7 +108,20 @@ export function App() {
             element={
               <FavoritePage
                 onClickFavorites={onClickFavorites}
+                onClickAddToCard={onClickAddToCard}
                 favoritsIds={favorites.map((i) => i.id)}
+                cartIds={cartItems.map((i) => i.id)}
+              />
+            }
+          />
+          <Route
+            path="/cart"
+            element={
+              <CartPage
+                onClickFavorites={onClickFavorites}
+                onClickAddToCard={onClickAddToCard}
+                favoritsIds={favorites.map((i) => i.id)}
+                cartIds={cartItems.map((i) => i.id)}
               />
             }
           />

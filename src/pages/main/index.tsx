@@ -11,10 +11,12 @@ export const MainPage = ({
   handleChangeCategory,
   selectedCategory,
   onClickFavorites,
+  onClickAddToCard,
   favoritsIds,
+  cartIds,
   handleChangeSort,
 }) => {
-  const products = useSelector((state: RootState) => state.product.products);
+  const products = useSelector((state: RootState) => state.product.products);  
   const dispatch = useDispatch();
 
   const loading = useSelector(
@@ -40,7 +42,9 @@ export const MainPage = ({
               key={product.id}
               product={product}
               onClickFavorites={onClickFavorites}
+              onClickAddToCard={onClickAddToCard}
               favoritsIds={favoritsIds}
+              cartIds={cartIds}
             />
           ))}
         </div>
