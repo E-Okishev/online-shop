@@ -5,6 +5,8 @@ import star from "../../img/rateStar.svg";
 import { FavoriteIconWithCard } from "../FavoriteIconWithCard/FavoriteIconWithCard.tsx";
 import s from "./CardItem.module.css";
 import { CartIcon } from "../cartIcon/CartIcon";
+import { formatedPrice, salePercent } from "../../utils.tsx";
+import { FavoriteButton } from "../favoriteButton/index.tsx";
 
 export function CardItem({
   product,
@@ -13,14 +15,6 @@ export function CardItem({
   favoritsIds,
   cartIds,
 }) {
-  const salePercent = (price, newPrice) => {
-    return Math.round((newPrice * 100) / price - 100);
-  };
-
-  const formatedPrice = (price) => {
-    return price.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1\u2009");
-  };
-
   const {
     id,
     brand,
@@ -39,12 +33,11 @@ export function CardItem({
 
   return (
     <div className={s.card}>
-      <button
-        className={s.favoriteBtn}
+      <FavoriteButton
+        isActive={favoritsIds.includes(id)}
         onClick={() => onClickFavorites(product)}
-      >
-        <FavoriteIconWithCard active={favoritsIds.includes(id)} />
-      </button>
+        className={s.absolutePosition}
+      />
       <div className={s.cardImg}>
         <img className={s.photo} src={photo} alt={name} />
       </div>

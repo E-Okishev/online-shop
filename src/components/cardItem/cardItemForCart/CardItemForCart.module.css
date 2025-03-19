@@ -1,0 +1,53 @@
+.cardItem{
+  display: grid;
+  grid-template-columns: 88px 3fr 1.5fr 1fr;
+  gap: 8px;
+  padding: 1rem;
+  align-items: start;
+}
+
+.cardItem:hover {
+  color: #005bff;
+}
+
+.cardImg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+
+.photo {
+  max-height: 88px;
+  max-width: 88px;
+  border-radius: 1rem;
+}
+
+.description {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.price {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  color: #10c44c;
+}
+
+.oldPrice {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  line-height: 20px;
+  color: #99a3ae;
+  text-decoration: line-through;
+}
+
+.name {
+  font-size: 14px;
+}

@@ -114,20 +114,15 @@
   font-size: 14px;
 }
 
-.favoriteBtn {
-  position: absolute;
-  right: 20px;
-  top: 20px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  height: 32px;
-  width: 32px;
-}
-
 .buttonBlock {
   margin-top: auto;
   width: 100%;
+}
+
+.absolutePosition {
+  position: absolute;
+  right: 20px;
+  top: 20px;
 }
 
 .cartButton {

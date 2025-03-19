@@ -119,7 +119,6 @@ export function App() {
             element={
               <CartPage
                 onClickFavorites={onClickFavorites}
-                onClickAddToCard={onClickAddToCard}
                 favoritsIds={favorites.map((i) => i.id)}
                 cartIds={cartItems.map((i) => i.id)}
               />

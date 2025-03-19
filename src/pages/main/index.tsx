@@ -23,10 +23,16 @@ export const MainPage = ({
     (state: RootState) => state.product.productsLoading
   );
 
+  const categoryNamе = {
+    'pristavka': 'Игровые консоли',
+    'phone': 'Смартфоны',
+    'laptop': 'Ноутбуки',
+  }
+
   return (
     <>
       {selectedCategory ? (
-        <Title text={selectedCategory} />
+        <Title text={categoryNamе[selectedCategory]} />
       ) : (
         <Title text={"Все товары"} />
       )}

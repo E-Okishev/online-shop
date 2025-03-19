@@ -1,0 +1,37 @@
+.counter {
+  display: flex;
+  gap: 8px;
+}
+
+.counter input {
+  background-color: #fff;
+  border: 2px solid #b3bcc5;
+  border-radius: 6px;
+  box-sizing: border-box;
+  width: 51px;
+  text-align: center;
+  padding: 7px 10px;
+}
+
+.counter input:active {
+  outline: none;
+  border-color: #005bff;
+}
+
+.counter button {
+  border: none;
+  border-radius: 8px;
+  background-color: rgba(0, 150, 255, 0.078);
+  color: #005bff;
+  display: flex;
+  align-items: center;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
