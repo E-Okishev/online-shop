@@ -37,6 +37,20 @@ export const deleteCart = createAsyncThunk(
   }
 );
 
+export const updateProductInCart = createAsyncThunk(
+  "products/updateProductInCart",
+  async (updatedProduct, thunkAPI) => {
+    await fetch(`${BASE_URL}/cart/${updatedProduct.id}`, {
+      method: "PUT",
+      body: JSON.stringify(updatedProduct),
+      headers: {
+        "Content-type": "application/json",
+      },
+    });
+    return updatedProduct;
+  }
+);
+
 const initialState = {
   cartLoading: false,
   cartError: false,
@@ -47,16 +61,22 @@ export const cartSlice = createSlice({
   name: "cartSlice",
   initialState,
   extraReducers: (builder) => {
-    builder.addCase(loadCart.pending, (state, action) => {
+    builder.addCase(loadCart.pending, (state) => {
       state.cartLoading = true;
     });
     builder.addCase(loadCart.fulfilled, (state, action) => {
       state.cartLoading = false;
       state.cart = action.payload;
     });
-    builder.addCase(loadCart.rejected, (state, action) => {
+    builder.addCase(loadCart.rejected, (state) => {
       state.cartLoading = false;
       state.cartError = true;
+    });
+    builder.addCase(updateProductInCart.fulfilled, (state, action) => {
+      const updatedIndex = state.cart.findIndex((item) => item.id === action.payload.id);
+      if (updatedIndex !== -1) {
+        state.cart[updatedIndex] = action.payload;
+      }
     });
   },
 });

@@ -9,6 +9,7 @@
       "currency": "₽",
       "category": "phone",
       "rating": 5,
+      "quantity": 1,
       "photo": "https://ir.ozone.ru/s3/multimedia-1-4/wc1000/7302914176.jpg"
     },
     {
@@ -20,6 +21,7 @@
       "currency": "₽",
       "category": "phone",
       "rating": 4.8,
+      "quantity": 1,
       "photo": "https://ir.ozone.ru/s3/multimedia-1/wc1000/6759283957.jpg"
     },
     {
@@ -27,9 +29,11 @@
       "brand": "ASUS",
       "name": "ASUS ROG Zephyrus G14 Игровой ноутбук 14\", AMD Ryzen 9 8945HS, RAM 32 ГБ, SSD 1024 ГБ, NVIDIA GeForce RTX 4070 для ноутбуков (8 Гб), Windows Home",
       "price": 250290,
+      "newPrice": 0,
       "currency": "₽",
       "category": "laptop",
       "rating": 5,
+      "quantity": 1,
       "photo": "https://ir.ozone.ru/s3/multimedia-1-1/wc1000/6933824377.jpg"
     },
     {
@@ -41,6 +45,7 @@
       "currency": "₽",
       "category": "phone",
       "rating": 4.6,
+      "quantity": 1,
       "photo": "https://ir.ozone.ru/s3/multimedia-1-6/wc1000/7304957922.jpg"
     },
     {
@@ -52,6 +57,7 @@
       "currency": "₽",
       "category": "laptop",
       "rating": 0,
+      "quantity": 1,
       "photo": "https://ir.ozone.ru/s3/multimedia-1-q/wc1000/7196945606.jpg"
     },
     {
@@ -63,6 +69,7 @@
       "currency": "₽",
       "category": "laptop",
       "rating": 4.9,
+      "quantity": 1,
       "photo": "https://ir-3.ozone.ru/s3/multimedia-1-a/wc1000/7172606626.jpg"
     },
     {
@@ -70,9 +77,11 @@
       "brand": "Xiaomi",
       "name": "Redmi A3 Global 4/128 ГБ",
       "price": 8990,
+      "newPrice": 0,
       "currency": "₽",
       "category": "phone",
       "rating": 4.8,
+      "quantity": 1,
       "photo": "https://ir-3.ozone.ru/s3/multimedia-1-c/wc1000/6926404896.jpg"
     },
     {
@@ -84,6 +93,7 @@
       "currency": "₽",
       "category": "pristavka",
       "rating": 0,
+      "quantity": 1,
       "photo": "https://ir-3.ozone.ru/s3/multimedia-0/wc1000/6837907680.jpg"
     },
     {
@@ -94,6 +104,7 @@
       "currency": "₽",
       "category": "pristavka",
       "rating": 3.2,
+      "quantity": 1,
       "photo": "https://ir-3.ozone.ru/s3/multimedia-1-8/wc1000/7290739700.jpg"
     },
     {
@@ -104,6 +115,7 @@
       "currency": "₽",
       "category": "pristavka",
       "rating": 4.9,
+      "quantity": 1,
       "photo": "https://ir-3.ozone.ru/s3/multimedia-1-l/wc1000/7190409909.jpg"
     },
     {
@@ -115,6 +127,7 @@
       "currency": "₽",
       "category": "phone",
       "rating": 5,
+      "quantity": 1,
       "photo": "https://ir.ozone.ru/s3/multimedia-1/wc1000/6904919305.jpg"
     },
     {
@@ -126,6 +139,7 @@
       "currency": "₽",
       "category": "phone",
       "rating": 0,
+      "quantity": 1,
       "photo": "https://ir.ozone.ru/s3/multimedia-1-5/wc1000/6955499957.jpg"
     },
     {
@@ -137,6 +151,7 @@
       "currency": "₽",
       "category": "phone",
       "rating": 5,
+      "quantity": 1,
       "photo": "https://ir.ozone.ru/s3/multimedia-1-1/wc1000/7071265897.jpg"
     },
     {
@@ -148,6 +163,7 @@
       "currency": "₽",
       "category": "phone",
       "rating": 5,
+      "quantity": 1,
       "photo": "https://ir.ozone.ru/s3/multimedia-1-f/wc1000/7065258567.jpg"
     },
     {
@@ -159,6 +175,7 @@
       "currency": "₽",
       "category": "phone",
       "rating": 5,
+      "quantity": 1,
       "photo": "https://ir.ozone.ru/s3/multimedia-1-w/wc1000/7133262440.jpg"
     },
     {
@@ -170,6 +187,7 @@
       "currency": "₽",
       "category": "laptop",
       "rating": 5,
+      "quantity": 1,
       "photo": "https://ir.ozone.ru/s3/multimedia-1-1/wc1000/6933824377.jpg"
     },
     {
@@ -181,6 +199,7 @@
       "currency": "₽",
       "category": "laptop",
       "rating": 4.4,
+      "quantity": 1,
       "photo": "https://ir.ozone.ru/s3/multimedia-1-g/wc1000/7050006328.jpg"
     },
     {
@@ -192,6 +211,7 @@
       "currency": "₽",
       "category": "laptop",
       "rating": 4.8,
+      "quantity": 1,
       "photo": "https://ir.ozone.ru/s3/multimedia-1-g/wc1000/7300240108.jpg"
     },
     {
@@ -203,6 +223,7 @@
       "currency": "₽",
       "category": "laptop",
       "rating": 0,
+      "quantity": 1,
       "photo": "https://ir.ozone.ru/s3/multimedia-1-n/wc1000/6924536447.jpg"
     },
     {
@@ -214,6 +235,7 @@
       "currency": "₽",
       "category": "laptop",
       "rating": 0,
+      "quantity": 1,
       "photo": "https://ir.ozone.ru/s3/multimedia-d/wc1000/6714741865.jpg"
     },
     {
@@ -225,6 +247,7 @@
       "currency": "₽",
       "category": "phone",
       "rating": 4.9,
+      "quantity": 1,
       "photo": "https://ir.ozone.ru/s3/multimedia-1-t/wc1000/7183267577.jpg"
     },
     {
@@ -236,6 +259,7 @@
       "currency": "₽",
       "category": "phone",
       "rating": 4.9,
+      "quantity": 1,
       "photo": "https://ir.ozone.ru/s3/multimedia-1-g/wc1000/7175024068.jpg"
     },
     {
@@ -247,6 +271,7 @@
       "currency": "₽",
       "category": "laptop",
       "rating": 5,
+      "quantity": 1,
       "photo": "https://ir.ozone.ru/s3/multimedia-1-y/wc1000/7243874782.jpg"
     },
     {
@@ -258,6 +283,7 @@
       "currency": "₽",
       "category": "laptop",
       "rating": 5,
+      "quantity": 1,
       "photo": "https://ir.ozone.ru/s3/multimedia-1-6/wc1000/7269938598.jpg"
     },
     {
@@ -269,6 +295,7 @@
       "currency": "₽",
       "category": "laptop",
       "rating": 3.1,
+      "quantity": 1,
       "photo": "https://ir.ozone.ru/s3/multimedia-1-x/wc1000/7233371709.jpg"
     }
   ],
@@ -282,6 +309,7 @@
       "currency": "₽",
       "category": "laptop",
       "rating": 5,
+      "quantity": 1,
       "photo": "https://ir.ozone.ru/s3/multimedia-1-1/wc1000/6933824377.jpg"
     },
     {
@@ -293,28 +321,8 @@
       "currency": "₽",
       "category": "laptop",
       "rating": 4.4,
+      "quantity": 1,
       "photo": "https://ir.ozone.ru/s3/multimedia-1-g/wc1000/7050006328.jpg"
-    },
-    {
-      "id": 2,
-      "brand": "Apple",
-      "name": "iPhone 15 SIM+eSIM 128 ГБ",
-      "price": 89990,
-      "newPrice": 86029,
-      "currency": "₽",
-      "category": "phone",
-      "rating": 4.8,
-      "photo": "https://ir.ozone.ru/s3/multimedia-1/wc1000/6759283957.jpg"
-    },
-    {
-      "id": 3,
-      "brand": "ASUS",
-      "name": "ASUS ROG Zephyrus G14 Игровой ноутбук 14\", AMD Ryzen 9 8945HS, RAM 32 ГБ, SSD 1024 ГБ, NVIDIA GeForce RTX 4070 для ноутбуков (8 Гб), Windows Home",
-      "price": 250290,
-      "currency": "₽",
-      "category": "laptop",
-      "rating": 5,
-      "photo": "https://ir.ozone.ru/s3/multimedia-1-1/wc1000/6933824377.jpg"
     },
     {
       "id": 10,
@@ -324,85 +332,34 @@
       "currency": "₽",
       "category": "pristavka",
       "rating": 4.9,
+      "quantity": 1,
       "photo": "https://ir-3.ozone.ru/s3/multimedia-1-l/wc1000/7190409909.jpg"
-    }
-  ],
-  "cart": [
-    {
-      "id": 21,
-      "brand": "Infinix",
-      "name": "HOT 50 Pro+ 8/256 ГБ",
-      "price": 25999,
-      "newPrice": 17770,
-      "currency": "₽",
-      "category": "phone",
-      "rating": 4.9,
-      "photo": "https://ir.ozone.ru/s3/multimedia-1-t/wc1000/7183267577.jpg"
-    },
-    {
-      "id": 1,
-      "brand": "Samsung",
-      "name": "Galaxy S25 Ultra 12/1 ТБ",
-      "price": 238339,
-      "newPrice": 210043,
-      "currency": "₽",
-      "category": "phone",
-      "rating": 5,
-      "photo": "https://ir.ozone.ru/s3/multimedia-1-4/wc1000/7302914176.jpg"
-    },
-    {
-      "id": 2,
-      "brand": "Apple",
-      "name": "iPhone 15 SIM+eSIM 128 ГБ",
-      "price": 89990,
-      "newPrice": 86029,
-      "currency": "₽",
-      "category": "phone",
-      "rating": 4.8,
-      "photo": "https://ir.ozone.ru/s3/multimedia-1/wc1000/6759283957.jpg"
     },
     {
       "id": 3,
       "brand": "ASUS",
       "name": "ASUS ROG Zephyrus G14 Игровой ноутбук 14\", AMD Ryzen 9 8945HS, RAM 32 ГБ, SSD 1024 ГБ, NVIDIA GeForce RTX 4070 для ноутбуков (8 Гб), Windows Home",
       "price": 250290,
+      "newPrice": 0,
       "currency": "₽",
       "category": "laptop",
       "rating": 5,
+      "quantity": 1,
       "photo": "https://ir.ozone.ru/s3/multimedia-1-1/wc1000/6933824377.jpg"
-    },
+    }
+  ],
+  "cart": [
     {
-      "id": 4,
-      "brand": "Apple",
-      "name": "iPhone 16 Pro, eSIM+SIM 8/256 ГБ",
-      "price": 165599,
-      "newPrice": 163943,
-      "currency": "₽",
-      "category": "phone",
-      "rating": 4.6,
-      "photo": "https://ir.ozone.ru/s3/multimedia-1-6/wc1000/7304957922.jpg"
-    },
-    {
-      "id": 5,
-      "brand": "Apple",
-      "name": "MacBook Pro 14 (2024) Ноутбук 14.2\", Apple M4, RAM 16 ГБ, SSD 1024 ГБ, MacOS",
-      "price": 248009,
-      "newPrice": 232836,
+      "id": 3,
+      "brand": "ASUS",
+      "name": "ASUS ROG Zephyrus G14 Игровой ноутбук 14\", AMD Ryzen 9 8945HS, RAM 32 ГБ, SSD 1024 ГБ, NVIDIA GeForce RTX 4070 для ноутбуков (8 Гб), Windows Home",
+      "price": 250290,
+      "newPrice": 0,
       "currency": "₽",
       "category": "laptop",
-      "rating": 0,
-      "photo": "https://ir.ozone.ru/s3/multimedia-1-q/wc1000/7196945606.jpg"
-    },
-    {
-      "id": 6,
-      "brand": "Honor",
-      "name": "MagicBook 14 Ноутбук 14\", AMD Ryzen 5 5500U, RAM 16 ГБ, SSD 512 ГБ, AMD Radeon Graphics",
-      "price": 54999,
-      "newPrice": 52249,
-      "currency": "₽",
-      "category": "laptop",
-      "rating": 4.9,
-      "photo": "https://ir-3.ozone.ru/s3/multimedia-1-a/wc1000/7172606626.jpg"
+      "rating": 5,
+      "quantity": 3,
+      "photo": "https://ir.ozone.ru/s3/multimedia-1-1/wc1000/6933824377.jpg"
     }
   ]
 }

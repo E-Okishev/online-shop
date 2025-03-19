@@ -3,7 +3,7 @@
   gap: 8px;
 }
 
-.counter input {
+.counter span {
   background-color: #fff;
   border: 2px solid #b3bcc5;
   border-radius: 6px;
@@ -11,11 +11,7 @@
   width: 51px;
   text-align: center;
   padding: 7px 10px;
-}
-
-.counter input:active {
-  outline: none;
-  border-color: #005bff;
+  color: black;
 }
 
 .counter button {
@@ -25,6 +21,7 @@
   color: #005bff;
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 
 input[type="number"]::-webkit-inner-spin-button,

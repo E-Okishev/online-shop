@@ -41,7 +41,7 @@
   text-align: end;
 }
 
-.costSum {
+.costSum, .sale {
   font-weight: 700;
 }
 

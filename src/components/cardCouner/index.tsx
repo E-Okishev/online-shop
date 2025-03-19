@@ -1,35 +1,16 @@
 // @ts-nocheck
 
-import { useState } from "react";
 import s from "./cardCouner.module.css";
-import { useDispatch, useSelector } from "react-redux";
-import { deleteCart } from "../../slices/cartSlice";
 
-export function CardCounter({ productId }) {
-  const [count, setCount] = useState(1);
-  const dispatch = useDispatch();
-
-  const decrement = () => {
-    if (count > 1) {
-      setCount(count - 1);
-    } else {
-      dispatch(deleteCart(productId));
-    }
-  };
-
-  const increment = () => setCount(count + 1);
-
-  const onChanged = (e) => {
-    const value = e.target.value.trim();
-    if (!/^\d+$/.test(value) || Number(value) <= 0) {
-      return;
-    }
-    setCount(Number(value));
-  };
-
+export function CardCounter({
+  productId,
+  quantity,
+  handleChangePlusQuantity,
+  handleChangeMinusQuantity,
+}) {
   return (
     <div className={s.counter}>
-      <button onClick={decrement}>
+      <button onClick={handleChangeMinusQuantity}>
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
           <path
             fill="currentColor"
@@ -37,8 +18,8 @@ export function CardCounter({ productId }) {
           ></path>
         </svg>
       </button>
-      <input type="number" value={count} onChange={onChanged} />
-      <button onClick={increment}>
+      <span>{quantity} </span>
+      <button onClick={handleChangePlusQuantity}>
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
           <path
             fill="currentColor"

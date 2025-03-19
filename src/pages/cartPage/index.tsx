@@ -1,10 +1,12 @@
 // @ts-nocheck
 
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Title } from "../../components/title/Title";
 import s from "./CartPage.module.css";
-import { favoritesSlice } from "../../slices/favoritesSlice";
 import { CardItemForCart } from "../../components/cardItem/cardItemForCart";
+import { declension, formatedPrice } from "../../utils";
+import { updateProductInCart } from "../../slices/cartSlice";
 
 export const CartPage = ({
   onClickFavorites,
@@ -17,29 +19,25 @@ export const CartPage = ({
   const cartError = useSelector((state: RootState) => state.cart.cartError);
   const dispatch = useDispatch();
 
-  const declension = (num) => {
-    if (num === 1) {
-      return <p>{num} товар</p>;
-    }
-    if (num > 1 && num < 5) {
-      return <p>{num} товара</p>;
-    }
-    if (num >= 5) {
-      return `${num} товаров`;
-    }
-  };
+  const totalPrice = cartItems.reduce((acc, product) => {
+    const priceToUse = product.newPrice || product.price;
+    return acc + product.quantity * priceToUse;
+  }, 0);
 
-  const currencyInCart = () => {
-    let a = 0;
-    for (let i = 0; i < cartItems.length; i++) {
-      if (cartItems[i].currency === "₽") {
-        a++;
-      }
+  const totalDiscount = cartItems.reduce((acc, product) => {
+    if (product.newPrice && product.newPrice !== 0) {
+      const discountPerItem = product.price - product.newPrice;
+      return acc + discountPerItem * product.quantity;
     }
-    if (a === cartItems.length) {
-      return "₽";
-    }
-  };
+    return acc;
+  }, 0);
+
+  const total = totalPrice - totalDiscount;
+
+  const productCount = cartItems.reduce(
+    (acc, product) => acc + product.quantity,
+    0
+  );
 
   return (
     <>
@@ -66,19 +64,21 @@ export const CartPage = ({
           <div className={s.sum}>
             <div className={s.titleBlock}>
               <h3>Ваша корзина</h3>
-              <p>{declension(cartItems.length)}</p>
+              <p>{declension(productCount)}</p>
             </div>
             <div className={s.cost}>
-              <p>Товары ({cartItems.length})</p>
-              <p className={s.costSum}>234234 {currencyInCart()}</p>
+              <p>Товары ({productCount})</p>
+              <p className={s.costSum}>{formatedPrice(totalPrice)}₽</p>
             </div>
-            <div className={s.cost}>
-              <p>Скидка</p>
-              <p className={`${s.costSum} ${s.sale}`}>5454 {currencyInCart()}</p>
-            </div>
+            {totalDiscount > 0 && (
+              <div className={s.cost}>
+                <p>Скидка</p>
+                <p className={s.sale}>{formatedPrice(totalDiscount)}₽</p>
+              </div>
+            )}
             <div className={s.totalBlock}>
               <h3>Итого</h3>
-              <p className={s.total}>ц4343 {currencyInCart()}</p>
+              <p className={s.total}>{formatedPrice(total)} ₽</p>
             </div>
           </div>
         </div>

@@ -1,0 +1,18 @@
+.deleteBtn {
+  background-color: rgba(0, 48, 120, 0.039);;
+  border: none;
+  cursor: pointer;
+  height: 32px;
+  width: 32px;
+  padding: 0;
+  border-radius: 8px;
+}
+
+.deleteBtn:hover {
+  background-color: #DDE1E6;
+}
+
+.deleteBtn svg {
+  width: 16px;
+  height: 16px;
+}
