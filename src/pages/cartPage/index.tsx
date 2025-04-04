@@ -8,12 +8,7 @@ import { CardItemForCart } from "../../components/cardItem/cardItemForCart";
 import { declension, formatedPrice } from "../../utils";
 import { updateProductInCart } from "../../slices/cartSlice";
 
-export const CartPage = ({
-  onClickFavorites,
-  onClickAddToCard,
-  favoritsIds,
-  cartIds,
-}) => {
+export const CartPage = () => {
   const cartItems = useSelector((state: RootState) => state.cart.cart);
   const cartLoading = useSelector((state: RootState) => state.cart.cartLoading);
   const cartError = useSelector((state: RootState) => state.cart.cartError);
@@ -54,10 +49,6 @@ export const CartPage = ({
               <CardItemForCart
                 key={product.id}
                 product={product}
-                onClickFavorites={onClickFavorites}
-                onClickAddToCard={onClickAddToCard}
-                favoritsIds={favoritsIds}
-                cartIds={cartIds}
               />
             ))}
           </div>

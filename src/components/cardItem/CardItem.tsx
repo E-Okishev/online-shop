@@ -2,7 +2,6 @@
 
 import { useDispatch, useSelector } from "react-redux";
 import star from "../../img/rateStar.svg";
-import { FavoriteIconWithCard } from "../FavoriteIconWithCard/FavoriteIconWithCard.tsx";
 import s from "./CardItem.module.css";
 import { formatedPrice, salePercent } from "../../utils.tsx";
 import { FavoriteButton } from "../favoriteButton/index.tsx";
@@ -11,10 +10,6 @@ import { AddToCartButton } from "../addToCartButton/index.tsx";
 
 export function CardItem({
   product,
-  onClickFavorites,
-  onClickAddToCard,
-  favoritsIds,
-  cartIds,
 }) {
   const {
     id,
@@ -30,11 +25,7 @@ export function CardItem({
 
   return (
     <div className={s.card}>
-      <FavoriteButton
-        isActive={favoritsIds.includes(id)}
-        onClick={() => onClickFavorites(product)}
-        className={s.absolutePosition}
-      />
+      <FavoriteButton product={product} className={s.absolutePosition} />
       <Link to={`/product/${id}`}>
         <div className={s.cardImg}>
           <img className={s.photo} src={photo} alt={name} />
@@ -74,10 +65,7 @@ export function CardItem({
           </p>
         )}
         <div className={s.buttonBlock}>
-          <AddToCartButton
-            isInCart={cartIds.includes(id)}
-            onClick={() => onClickAddToCard(product)}
-          />
+          <AddToCartButton product={product} />
         </div>
       </div>
     </div>

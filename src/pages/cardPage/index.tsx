@@ -12,17 +12,11 @@ import original from "../../img/original.svg";
 import { FavoriteButton } from "../../components/favoriteButton";
 import { AddToCartButton } from "../../components/addToCartButton/index.tsx";
 
-export const CardPage = ({
-  onClickFavorites,
-  onClickAddToCard,
-  favoritsIds,
-  cartIds,
-}) => {
+export const CardPage = () => {
   const { id } = useParams();
 
   const dispatch = useDispatch();
 
-  const cartItems = useSelector((state) => state.cart.cart);
   const { product } = useSelector((state) => state.card);
 
   useEffect(() => {
@@ -35,8 +29,6 @@ export const CardPage = ({
 
   const { brand, name, price, newPrice, currency, category, rating, photo } =
     product;
-
-  const isInCart = cartItems.some((item) => item.id === product.id);
 
   return (
     <>
@@ -87,14 +79,8 @@ export const CardPage = ({
               </div>
             )}
             <div className={s.buttonBlock}>
-              <AddToCartButton
-                isInCart={isInCart}
-                onClick={() => onClickAddToCard(product)}
-              />
-              <FavoriteButton
-                isActive={favoritsIds.includes(String(id))}
-                onClick={() => onClickFavorites(product)}
-              />
+              <AddToCartButton product={product} />
+              <FavoriteButton product={product} />
             </div>
           </div>
         </div>

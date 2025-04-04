@@ -27,9 +27,6 @@ export function App() {
   const [selectedCategory, setSelectedCategory] = useState<string>("");
   const [sort, setSort] = useState<string>("");
 
-  const favorites = useSelector((state: RootState) => state.favorite.favorites);
-  const cartItems = useSelector((state: RootState) => state.cart.cart);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -58,22 +55,6 @@ export function App() {
     });
   };
 
-  const onClickFavorites = (product) => {
-    if (favorites.some((e) => e.id === product.id)) {
-      dispatch(deleteFavorites(product.id));
-    } else {
-      dispatch(addToFavorites(product));
-    }
-  };
-
-  const onClickAddToCard = (product) => {
-    if (cartItems.some((e) => e.id === product.id)) {
-      dispatch(deleteCart(product.id));
-    } else {
-      dispatch(addToCart(product));
-    }
-  };
-
   const handleChangeSort = (order) => {
     setSort(order);
   };
@@ -97,45 +78,12 @@ export function App() {
                 handleInput={handleInput}
                 handleChangeCategory={handleChangeCategory}
                 selectedCategory={selectedCategory}
-                onClickFavorites={onClickFavorites}
-                onClickAddToCard={onClickAddToCard}
-                favoritsIds={favorites.map((i) => i.id)}
-                cartIds={cartItems.map((i) => i.id)}
               />
             }
           />
-          <Route
-            path="/favorites"
-            element={
-              <FavoritePage
-                onClickFavorites={onClickFavorites}
-                onClickAddToCard={onClickAddToCard}
-                favoritsIds={favorites.map((i) => i.id)}
-                cartIds={cartItems.map((i) => i.id)}
-              />
-            }
-          />
-          <Route
-            path="/cart"
-            element={
-              <CartPage
-                onClickFavorites={onClickFavorites}
-                favoritsIds={favorites.map((i) => i.id)}
-                cartIds={cartItems.map((i) => i.id)}
-              />
-            }
-          />
-          <Route
-            path="/product/:id"
-            element={
-              <CardPage
-                onClickFavorites={onClickFavorites}
-                onClickAddToCard={onClickAddToCard}
-                favoritsIds={favorites.map((i) => String(i.id))}
-                cartIds={cartItems.map((i) => String(i.id))}
-              />
-            }
-          />
+          <Route path="/favorites" element={<FavoritePage />} />
+          <Route path="/cart" element={<CartPage />} />
+          <Route path="/product/:id" element={<CardPage />} />
           <Route path="*" element={<h1>404</h1>} />
         </Routes>
       </main>

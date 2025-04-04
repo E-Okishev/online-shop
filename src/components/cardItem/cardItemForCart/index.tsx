@@ -1,10 +1,7 @@
 // @ts-nocheck
 
 import { useDispatch } from "react-redux";
-import star from "../../img/rateStar.svg";
-import { FavoriteIconWithCard } from "../../FavoriteIconWithCard/FavoriteIconWithCard.tsx";
 import s from "./CardItemForCart.module.css";
-import { CartIcon } from "../../cartIcon/CartIcon.tsx";
 import { formatedPrice } from "../../../utils.tsx";
 import { FavoriteButton } from "../../favoriteButton/index.tsx";
 import { CardCounter } from "../../cardCouner/index.tsx";
@@ -15,9 +12,6 @@ import { Link } from "react-router-dom";
 
 export const CardItemForCart = ({
   product,
-  onClickFavorites,
-  favoritsIds,
-  cartIds,
 }) => {
   const {
     id,
@@ -117,10 +111,7 @@ export const CardItemForCart = ({
           )}
         </Link>
         <div className={s.buttonBlock}>
-          <FavoriteButton
-            isActive={favoritsIds.includes(id)}
-            onClick={() => onClickFavorites(product)}
-          />
+          <FavoriteButton product={product} />
           <DeleteButton onClick={() => dispatch(deleteCart(product.id))} />
         </div>
       </div>

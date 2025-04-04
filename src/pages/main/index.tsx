@@ -10,10 +10,6 @@ export const MainPage = ({
   handleInput,
   handleChangeCategory,
   selectedCategory,
-  onClickFavorites,
-  onClickAddToCard,
-  favoritsIds,
-  cartIds,
   handleChangeSort,
 }) => {
   const products = useSelector((state: RootState) => state.product.products);  
@@ -47,10 +43,6 @@ export const MainPage = ({
             <CardItem
               key={product.id}
               product={product}
-              onClickFavorites={onClickFavorites}
-              onClickAddToCard={onClickAddToCard}
-              favoritsIds={favoritsIds}
-              cartIds={cartIds}
             />
           ))}
         </div>
