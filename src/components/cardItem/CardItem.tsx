@@ -4,9 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import star from "../../img/rateStar.svg";
 import { FavoriteIconWithCard } from "../FavoriteIconWithCard/FavoriteIconWithCard.tsx";
 import s from "./CardItem.module.css";
-import { CartIcon } from "../cartIcon/CartIcon";
 import { formatedPrice, salePercent } from "../../utils.tsx";
 import { FavoriteButton } from "../favoriteButton/index.tsx";
+import { Link } from "react-router-dom";
+import { AddToCartButton } from "../addToCartButton/index.tsx";
 
 export function CardItem({
   product,
@@ -27,10 +28,6 @@ export function CardItem({
     photo,
   } = product;
 
-  const styleButton = cartIds.includes(id)
-    ? `${s.cartButton} ${s.active}`
-    : `${s.cartButton}`;
-
   return (
     <div className={s.card}>
       <FavoriteButton
@@ -38,9 +35,11 @@ export function CardItem({
         onClick={() => onClickFavorites(product)}
         className={s.absolutePosition}
       />
-      <div className={s.cardImg}>
-        <img className={s.photo} src={photo} alt={name} />
-      </div>
+      <Link to={`/product/${id}`}>
+        <div className={s.cardImg}>
+          <img className={s.photo} src={photo} alt={name} />
+        </div>
+      </Link>
       <div className={s.description}>
         {!newPrice ? (
           <div className={s.priceBlock}>
@@ -62,8 +61,10 @@ export function CardItem({
             <p className={s.percent}>{salePercent(price, newPrice)}</p>
           </div>
         )}
-        {brand && <h3 className={s.brand}>{brand}</h3>}
-        <p className={s.name}>{name}</p>
+        <Link to={`/product/${id}`}>
+          {brand && <h3 className={s.brand}>{brand}</h3>}
+          <p className={s.name}>{name}</p>
+        </Link>
         {rating === 0 ? (
           <p className={s.noRate}>Нет отзывов</p>
         ) : (
@@ -73,19 +74,10 @@ export function CardItem({
           </p>
         )}
         <div className={s.buttonBlock}>
-          <button
-            className={styleButton}
-            type="button"
+          <AddToCartButton
+            isInCart={cartIds.includes(id)}
             onClick={() => onClickAddToCard(product)}
-          >
-            {cartIds.includes(id) ? (
-              `В корзине`
-            ) : (
-              <>
-                <CartIcon /> В корзину
-              </>
-            )}
-          </button>
+          />
         </div>
       </div>
     </div>

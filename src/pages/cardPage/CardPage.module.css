@@ -1,0 +1,94 @@
+.flex {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  width: fit-content;
+}
+
+.cardInfo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 1rem;
+  background-color: white;
+  border-radius: 32px;
+}
+
+.cardImg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+
+.photo {
+  width: 100%;
+  max-width: 350px;
+}
+
+.cardDescription {
+  letter-spacing: 0.2px;
+  font-weight: 400;
+}
+
+.about {
+  display: flex;
+  gap: 1rem;
+  margin-block-end: 1rem;
+}
+
+.rate,
+.noRate {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  color: rgba(0, 26, 52, 0.6);
+}
+
+.brand {
+  color: rgba(0, 26, 52, 0.6);
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.brand span {
+  color: #000000;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.sale {
+  padding: 1rem;
+  background-color: #f4f7fa;
+  border-radius: 32px;
+  display: grid;
+  gap: 1rem;
+}
+
+.price {
+  background: #10c44c;
+  border-radius: 8px;
+  color: #fff;
+  padding: 2px 8px;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 38px;
+}
+
+.oldPrice {
+  color: rgba(0, 26, 52, 0.6);
+  font-size: 20px;
+  line-height: 26px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  text-decoration: line-through;
+}
+
+.percent {
+  color: #f91155;
+}
+
+.buttonBlock {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}

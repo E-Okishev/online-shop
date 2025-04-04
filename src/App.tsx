@@ -17,6 +17,7 @@ import { FavoritePage } from "./pages/favorite";
 import { MainPage } from "./pages/main";
 import { CartPage } from "./pages/cartPage";
 import { loadCart, addToCart, deleteCart } from "./slices/cartSlice";
+import { CardPage } from "./pages/cardPage";
 
 export const BASE_URL = "http://localhost:5000";
 
@@ -121,6 +122,17 @@ export function App() {
                 onClickFavorites={onClickFavorites}
                 favoritsIds={favorites.map((i) => i.id)}
                 cartIds={cartItems.map((i) => i.id)}
+              />
+            }
+          />
+          <Route
+            path="/product/:id"
+            element={
+              <CardPage
+                onClickFavorites={onClickFavorites}
+                onClickAddToCard={onClickAddToCard}
+                favoritsIds={favorites.map((i) => String(i.id))}
+                cartIds={cartItems.map((i) => String(i.id))}
               />
             }
           />

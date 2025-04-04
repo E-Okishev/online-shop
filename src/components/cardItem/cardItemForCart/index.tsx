@@ -11,6 +11,7 @@ import { CardCounter } from "../../cardCouner/index.tsx";
 import { useEffect, useState } from "react";
 import { deleteCart, updateProductInCart } from "../../../slices/cartSlice.ts";
 import { DeleteButton } from "../../deleteButton/index.tsx";
+import { Link } from "react-router-dom";
 
 export const CardItemForCart = ({
   product,
@@ -100,23 +101,27 @@ export const CardItemForCart = ({
 
   return (
     <div className={s.cardItem}>
-      <div className={s.cardImg}>
-        <img className={s.photo} src={photo} alt={name} />
-      </div>
+      <Link to={`/product/${id}`}>
+        <div className={s.cardImg}>
+          <img className={s.photo} src={photo} alt={name} />
+        </div>
+      </Link>
       <div className={s.description}>
-        {brand ? (
-          <p className={s.name}>
-            {brand} {name}
-          </p>
-        ) : (
-          <p className={s.name}>{name}</p>
-        )}
+        <Link to={`/product/${id}`}>
+          {brand ? (
+            <p className={s.name}>
+              {brand} {name}
+            </p>
+          ) : (
+            <p className={s.name}>{name}</p>
+          )}
+        </Link>
         <div className={s.buttonBlock}>
           <FavoriteButton
             isActive={favoritsIds.includes(id)}
             onClick={() => onClickFavorites(product)}
           />
-          <DeleteButton onClick={() => dispatch(deleteCart(product.id))}/>
+          <DeleteButton onClick={() => dispatch(deleteCart(product.id))} />
         </div>
       </div>
       {renderPriceBlock(

@@ -8,6 +8,7 @@ interface FavoriteButtonProps {
 }
 
 export function FavoriteButton({ isActive, onClick, className = "" }: FavoriteButtonProps) {
+  
   return (
     <button className={`${s.favoriteBtn} ${className}`} onClick={onClick}>
       <FavoriteIconWithCard active={isActive} />
