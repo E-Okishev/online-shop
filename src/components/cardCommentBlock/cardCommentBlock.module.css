@@ -1,0 +1,7 @@
+.cardComment {
+  padding: 1rem;
+  background-color: white;
+  border-radius: 32px;
+  margin-block-end: 1rem;
+  max-width: 600px;
+}

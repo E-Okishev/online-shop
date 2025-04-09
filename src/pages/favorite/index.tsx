@@ -2,9 +2,10 @@
 
 import { useDispatch, useSelector } from "react-redux";
 import { CardItem } from "../../components/cardItem/CardItem";
-import { Title } from "../../components/title/Title";
 import s from "../main/mainPage.module.css";
 import { favoritesSlice } from "../../slices/favoritesSlice";
+import { Typography } from "antd";
+const { Title } = Typography;
 
 export const FavoritePage = () => {
   const favorites = useSelector((state: RootState) => state.favorite.favorites);
@@ -18,7 +19,7 @@ export const FavoritePage = () => {
 
   return (
     <>
-      <Title text={"Избранное"} />
+      <Title>Избранное</Title>
       {favoritesError && <p>Error... sory</p>}
       {favoritesLoading ? (
         <p>Loading...</p>

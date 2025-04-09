@@ -1,7 +1,6 @@
 // @ts-nocheck
 
 import { useParams } from "react-router-dom";
-import { Title } from "../../components/title/Title";
 import s from "./CardPage.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { loadProduct } from "../../slices/cardSlice";
@@ -11,6 +10,9 @@ import { formatedPrice, salePercent } from "../../utils.tsx";
 import original from "../../img/original.svg";
 import { FavoriteButton } from "../../components/favoriteButton";
 import { AddToCartButton } from "../../components/addToCartButton/index.tsx";
+import { Typography } from "antd";
+import { CardCommentBlock } from "../../components/cardCommentBlock/index.tsx";
+const { Title } = Typography;
 
 export const CardPage = () => {
   const { id } = useParams();
@@ -37,7 +39,7 @@ export const CardPage = () => {
           <img className={s.photo} src={photo} alt={name} />
         </div>
         <div className={s.cardDescription}>
-          {!brand ? <Title text={name} /> : <Title text={`${brand} ${name}`} />}
+          {!brand ? <Title>{name}</Title> : <Title>{`${brand} ${name}`}</Title>}
           <div className={s.about}>
             {rating === 0 ? (
               <p className={s.noRate}>Нет отзывов</p>
@@ -85,6 +87,7 @@ export const CardPage = () => {
           </div>
         </div>
       </div>
+      <CardCommentBlock />
     </>
   );
 };

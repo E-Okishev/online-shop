@@ -2,9 +2,10 @@
 
 import { useDispatch, useSelector } from "react-redux";
 import { CardItem } from "../../components/cardItem/CardItem";
-import { Title } from "../../components/title/Title";
 import s from "./mainPage.module.css";
 import { Sort } from "../../components/sort/Sort";
+import { Typography } from "antd";
+const { Title } = Typography;
 
 export const MainPage = ({
   handleInput,
@@ -28,9 +29,9 @@ export const MainPage = ({
   return (
     <>
       {selectedCategory ? (
-        <Title text={categoryNamе[selectedCategory]} />
+        <Title>{categoryNamе[selectedCategory]}</Title>
       ) : (
-        <Title text={"Все товары"} />
+        <Title>Все товары</Title>
       )}
       <Sort handleChangeSort={handleChangeSort} />
       {loading ? (

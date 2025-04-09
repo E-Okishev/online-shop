@@ -52,6 +52,11 @@
 
 .name {
   font-size: 14px;
+  transition: color 0.2s ease;
+}
+
+.name:hover {
+ color: #005bff;
 }
 
 .priceOneItem {

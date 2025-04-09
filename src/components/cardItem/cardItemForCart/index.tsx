@@ -95,10 +95,8 @@ export const CardItemForCart = ({
 
   return (
     <div className={s.cardItem}>
-      <Link to={`/product/${id}`}>
-        <div className={s.cardImg}>
+      <Link to={`/product/${id}`} className={s.cardImg}>
           <img className={s.photo} src={photo} alt={name} />
-        </div>
       </Link>
       <div className={s.description}>
         <Link to={`/product/${id}`}>

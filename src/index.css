@@ -144,3 +144,7 @@ table {
 button {
 	font-family: "Rubik", serif;
 }
+a {
+	text-decoration: none;
+	color: black;
+}

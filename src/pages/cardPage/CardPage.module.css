@@ -6,23 +6,27 @@
 }
 
 .cardInfo {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
   padding: 1rem;
   background-color: white;
   border-radius: 32px;
+  margin-block-end: 1rem;
+}
+
+.cardInfo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 .cardImg {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   user-select: none;
+  margin: 0 auto;
 }
 
 .photo {
   width: 100%;
   max-width: 350px;
+  position: sticky;
+  top: 1rem;
 }
 
 .cardDescription {
