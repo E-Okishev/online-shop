@@ -339,18 +339,6 @@
   ],
   "cart": [
     {
-      "id": 2,
-      "brand": "Apple",
-      "name": "iPhone 15 SIM+eSIM 128 ГБ",
-      "price": 89990,
-      "newPrice": 86029,
-      "currency": "₽",
-      "category": "phone",
-      "rating": 4.8,
-      "quantity": 1,
-      "photo": "https://ir.ozone.ru/s3/multimedia-1/wc1000/6759283957.jpg"
-    },
-    {
       "id": 1,
       "brand": "Samsung",
       "name": "Galaxy S25 Ultra 12/1 ТБ",
@@ -373,6 +361,71 @@
       "rating": 3.1,
       "quantity": 1,
       "photo": "https://ir.ozone.ru/s3/multimedia-1-x/wc1000/7233371709.jpg"
+    }
+  ],
+  "comments": [
+    {
+      "userName": "sdcsdv",
+      "text": "sdvsd ljsv joa ",
+      "productId": "3",
+      "date": "09.04.2025, 13:21:40",
+      "id": 1
+    },
+    {
+      "userName": "Zdcvm",
+      "text": "qadfvk poij rpfoij q[epofk q[oew [wepojf [mfc alrkjfnfoejsorvkcnsdlkfj ajdbfvlkadlrfpaoerif pajrpf alskdcnp aoierpu cadfnvbf kdjslkf ar a ra pac",
+      "productId": "2",
+      "date": "10.04.2025, 13:20:53",
+      "id": 2
+    },
+    {
+      "userName": "iqoud",
+      "text": "vnsir fifrjflsnl aa/sodhv \n",
+      "productId": "2",
+      "date": "10.04.2025, 13:29:12",
+      "id": 3
+    },
+    {
+      "userName": "sdcsdvd",
+      "text": "sduh sdl;ij. a;ljkaopreij",
+      "productId": "2",
+      "date": "10.04.2025, 13:30:16",
+      "id": 4
+    },
+    {
+      "userName": "Egor",
+      "text": "Очень хороший телефон\n",
+      "productId": "2",
+      "date": "10.04.2025, 13:50:53",
+      "id": 5
+    },
+    {
+      "userName": "zalup",
+      "text": "lkckdu eprplfd a;rfkopea eutgh. adlfkmviotjg dvdlf,   kdrlmdeorgjp edtgijskmtskr[aewokr[qw e[qer[oqke[fjerfptnejnvpurp qrq [irjgpuwtvpw r[qirv",
+      "productId": "2",
+      "date": "10.04.2025, 13:55:09",
+      "id": 6
+    },
+    {
+      "userName": "dsfkj sq;lkql",
+      "text": "dflkv. qaerpfkmf wejfp a",
+      "productId": "2",
+      "date": "10.04.2025, 13:59:13",
+      "id": 7
+    },
+    {
+      "userName": "dfvd",
+      "text": "df;vkmwp t pwijrpgiw ri refe",
+      "productId": "2",
+      "date": "10.04.2025, 13:59:30",
+      "id": 8
+    },
+    {
+      "userName": "zzzzz",
+      "text": "ioudhfivh oauh rioeifoiqe roqe oir",
+      "productId": "1",
+      "date": "10.04.2025, 14:01:05",
+      "id": 9
     }
   ]
 }

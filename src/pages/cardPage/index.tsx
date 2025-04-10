@@ -87,7 +87,7 @@ export const CardPage = () => {
           </div>
         </div>
       </div>
-      <CardCommentBlock />
+      <CardCommentBlock productId={id} />
     </>
   );
 };

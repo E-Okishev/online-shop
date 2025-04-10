@@ -13,18 +13,18 @@ export const MainPage = ({
   selectedCategory,
   handleChangeSort,
 }) => {
-  const products = useSelector((state: RootState) => state.product.products);  
+  const { products } = useSelector((state: RootState) => state.products);
   const dispatch = useDispatch();
 
   const loading = useSelector(
-    (state: RootState) => state.product.productsLoading
+    (state: RootState) => state.products.productsLoading
   );
 
   const categoryNamе = {
-    'pristavka': 'Игровые консоли',
-    'phone': 'Смартфоны',
-    'laptop': 'Ноутбуки',
-  }
+    pristavka: "Игровые консоли",
+    phone: "Смартфоны",
+    laptop: "Ноутбуки",
+  };
 
   return (
     <>
@@ -41,10 +41,7 @@ export const MainPage = ({
       ) : (
         <div className={s.cardList}>
           {products.map((product) => (
-            <CardItem
-              key={product.id}
-              product={product}
-            />
+            <CardItem key={product.id} product={product} />
           ))}
         </div>
       )}

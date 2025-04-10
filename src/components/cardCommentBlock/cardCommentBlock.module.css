@@ -3,5 +3,59 @@
   background-color: white;
   border-radius: 32px;
   margin-block-end: 1rem;
-  max-width: 600px;
+}
+
+.commentBlock {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.form,
+.commentList {
+  padding: 1rem;
+  background-color: #f4f7fa;
+  border-radius: 32px;
+}
+
+.commentList {
+  display: grid;
+  gap: 1rem;
+  max-height: 300px;
+  overflow-y: scroll;
+}
+
+.commentElem {
+  padding: 1rem;
+  background-color: white;
+  border-radius: 32px;
+  height: fit-content;
+}
+
+.commentAutor {
+  display: flex;
+  gap: 8px;
+  margin-block-end: 8px;
+}
+
+.commentAvatr {
+  background-color: #005bff;
+  border-radius: 100px;
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 20px;
+}
+
+.commentAutorDate span {
+  color: rgba(0, 26, 52, 0.6);
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.commentAutorDate h4 {
+  margin-bottom: 4px;
 }
