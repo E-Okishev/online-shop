@@ -28,12 +28,17 @@ export function App() {
   const [selectedCategory, setSelectedCategory] = useState<string>("");
   const [sort, setSort] = useState<string>("");
   const [price, setPrice] = useState({ priceFrom: null, priceTo: null });
+  const [page, setPage] = useState<number>(1);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchProducts({ inputName, selectedCategory, sort, price }));
+    setPage(1);
   }, [inputName, selectedCategory, sort, price]);
+
+  useEffect(() => {
+    dispatch(fetchProducts({ inputName, selectedCategory, sort, price, page }));
+  }, [inputName, selectedCategory, sort, price, page]);
 
   useEffect(() => {
     dispatch(fetchFavorites());
@@ -86,6 +91,8 @@ export function App() {
                 handleInput={handleInput}
                 handleChangeCategory={handleChangeCategory}
                 selectedCategory={selectedCategory}
+                page={page}
+                setPage={setPage}
               />
             }
           />

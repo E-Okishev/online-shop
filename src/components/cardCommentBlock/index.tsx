@@ -19,8 +19,6 @@ export const CardCommentBlock: React.FC = ({ productId }) => {
   const { comments } = useSelector((state) => state.card);
   const [form] = Form.useForm();
 
-  console.log(comments.length)
-
   const date = new Date().toLocaleString();
   const handleFinis: FormProps<FieldType>["onFinish"] = (values) => {
     const newComment = { ...values, productId, date };

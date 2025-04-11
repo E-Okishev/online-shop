@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { CardItem } from "../../components/cardItem/CardItem";
 import s from "./mainPage.module.css";
 import { Sort } from "../../components/sort/Sort";
-import { Typography } from "antd";
+import { Typography, Pagination } from "antd";
 const { Title } = Typography;
 
 export const MainPage = ({
@@ -12,6 +12,8 @@ export const MainPage = ({
   handleChangeCategory,
   selectedCategory,
   handleChangeSort,
+  page,
+  setPage,
 }) => {
   const { products } = useSelector((state: RootState) => state.products);
   const dispatch = useDispatch();
@@ -45,6 +47,13 @@ export const MainPage = ({
           ))}
         </div>
       )}
+      <Pagination
+        style={{ marginTop: "1rem" }}
+        align="center"
+        current={page}
+        total={25}
+        onChange={(page) => setPage(page)}
+      />
     </>
   );
 };
