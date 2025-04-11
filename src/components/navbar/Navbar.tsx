@@ -1,15 +1,26 @@
 // @ts-nocheck
 
-import s from './Navbar.module.css'
+import { Input } from "antd";
+import s from "./Navbar.module.css";
+import { Typography } from "antd";
+import { Flex } from "antd";
+const { Title } = Typography;
 
-export const Navbar = ({handleChangeCategory, selectedCategory}) => {
+export const Navbar = ({
+  handleChangeCategory,
+  selectedCategory,
+  setPrice,
+  price,
+}) => {
   return (
-    <div className={s.navbar}>
+    <>
       <ul>
         <li
           onClick={(e) => handleChangeCategory("phone")}
           className={
-            selectedCategory === "phone" ? `${s.listItem} ${s.active}` : `${s.listItem}`
+            selectedCategory === "phone"
+              ? `${s.listItem} ${s.active}`
+              : `${s.listItem}`
           }
         >
           Телефоны
@@ -35,6 +46,20 @@ export const Navbar = ({handleChangeCategory, selectedCategory}) => {
           Игровые приставки
         </li>
       </ul>
-    </div>
+      <div className={s.filterPrice}>
+        <Title level={5}>Фильтр по цене</Title>
+        <Flex gap="small" align="center">
+          <Input
+            placeholder="От"
+            onChange={(e) => setPrice({ ...price, priceFrom: e.target.value })}
+          ></Input>
+          <span>—</span>
+          <Input
+            placeholder="До"
+            onChange={(e) => setPrice({ ...price, priceTo: e.target.value })}
+          ></Input>
+        </Flex>
+      </div>
+    </>
   );
 };

@@ -11,8 +11,8 @@
     "server": "json-server --watch db.json -p 5000"
   },
   "dependencies": {
+    "@ant-design/v5-patch-for-react-19": "^1.0.3",
     "@reduxjs/toolkit": "^2.5.1",
-    "antd": "^5.24.6",
     "json-server": "^0.17.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

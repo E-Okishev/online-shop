@@ -18,6 +18,7 @@ import { MainPage } from "./pages/main";
 import { CartPage } from "./pages/cartPage";
 import { loadCart, addToCart, deleteCart } from "./slices/cartSlice";
 import { CardPage } from "./pages/cardPage";
+import { Drawer } from "antd";
 
 export const BASE_URL = "http://localhost:5000";
 
@@ -26,12 +27,13 @@ export function App() {
   const [showNawbar, setShowNawbar] = useState<boolean>(false);
   const [selectedCategory, setSelectedCategory] = useState<string>("");
   const [sort, setSort] = useState<string>("");
+  const [price, setPrice] = useState({ priceFrom: null, priceTo: null });
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchProducts({ inputName, selectedCategory, sort }));
-  }, [inputName, selectedCategory, sort]);
+    dispatch(fetchProducts({ inputName, selectedCategory, sort, price }));
+  }, [inputName, selectedCategory, sort, price]);
 
   useEffect(() => {
     dispatch(fetchFavorites());
@@ -62,12 +64,18 @@ export function App() {
   return (
     <>
       <Header handleInput={handleInput} toggleNavbar={toggleNavbar} />
-      {showNawbar && (
+      <Drawer
+        open={showNawbar}
+        placement="left"
+        onClose={() => setShowNawbar(false)}
+      >
         <Navbar
           handleChangeCategory={handleChangeCategory}
           selectedCategory={selectedCategory}
+          setPrice={setPrice}
+          price={price}
         />
-      )}
+      </Drawer>
       <main className={s.main}>
         <Routes>
           <Route
