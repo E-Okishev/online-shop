@@ -6,17 +6,13 @@ import { Typography } from "antd";
 import { Flex } from "antd";
 const { Title } = Typography;
 
-export const Navbar = ({
-  handleChangeCategory,
-  selectedCategory,
-  setPrice,
-  price,
-}) => {
+export const Navbar = ({ handleChangeFilters, searchParams }) => {
+  const selectedCategory = searchParams.get("category");
   return (
     <>
       <ul>
         <li
-          onClick={(e) => handleChangeCategory("phone")}
+          onClick={(e) => handleChangeFilters("category", "phone")}
           className={
             selectedCategory === "phone"
               ? `${s.listItem} ${s.active}`
@@ -26,7 +22,7 @@ export const Navbar = ({
           Телефоны
         </li>
         <li
-          onClick={(e) => handleChangeCategory("laptop")}
+          onClick={(e) => handleChangeFilters("category", "laptop")}
           className={
             selectedCategory === "laptop"
               ? `${s.listItem} ${s.active}`
@@ -36,7 +32,7 @@ export const Navbar = ({
           Ноутбуки
         </li>
         <li
-          onClick={(e) => handleChangeCategory("pristavka")}
+          onClick={(e) => handleChangeFilters("category", "pristavka")}
           className={
             selectedCategory === "pristavka"
               ? `${s.listItem} ${s.active}`
@@ -51,12 +47,14 @@ export const Navbar = ({
         <Flex gap="small" align="center">
           <Input
             placeholder="От"
-            onChange={(e) => setPrice({ ...price, priceFrom: e.target.value })}
+            onChange={(e) => handleChangeFilters("price_gte", e.target.value)}
+            value={searchParams.get("price_gte")}
           ></Input>
           <span>—</span>
           <Input
             placeholder="До"
-            onChange={(e) => setPrice({ ...price, priceTo: e.target.value })}
+            onChange={(e) => handleChangeFilters("price_lte", e.target.value)}
+            value={searchParams.get("price_lte")}
           ></Input>
         </Flex>
       </div>

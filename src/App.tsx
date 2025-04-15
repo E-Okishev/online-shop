@@ -2,55 +2,57 @@
 
 import { useEffect, useState } from "react";
 import s from "./App.module.css";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useSearchParams } from "react-router-dom";
 import { Header } from "./components/header/Header";
 import { Navbar } from "./components/navbar/Navbar";
-import {
-  addToFavorites,
-  deleteFavorites,
-  fetchFavorites,
-} from "./slices/favoritesSlice";
+import { fetchFavorites } from "./slices/favoritesSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "./slices/productsSlice";
-
 import { FavoritePage } from "./pages/favorite";
 import { MainPage } from "./pages/main";
 import { CartPage } from "./pages/cartPage";
-import { loadCart, addToCart, deleteCart } from "./slices/cartSlice";
 import { CardPage } from "./pages/cardPage";
 import { Drawer } from "antd";
 
 export const BASE_URL = "http://localhost:5000";
 
 export function App() {
-  const [inputName, setInputName] = useState<string>("");
   const [showNawbar, setShowNawbar] = useState<boolean>(false);
-  const [selectedCategory, setSelectedCategory] = useState<string>("");
-  const [sort, setSort] = useState<string>("");
-  const [price, setPrice] = useState({ priceFrom: null, priceTo: null });
-  const [page, setPage] = useState<number>(1);
+
+  let [searchParams, setSearchParams] = useSearchParams();
 
   const dispatch = useDispatch();
+  const newParams = new URLSearchParams(searchParams);
 
-  useEffect(() => {
-    setPage(1);
-  }, [inputName, selectedCategory, sort, price]);
+  const handleChangeFilters = (key, value) => {
+    if (newParams.get(key) === value || !value) {
+      newParams.delete(key);
+      key === "_order" && newParams.delete("_sort");
+    } else if (key === "_order") {
+      newParams.set("_sort", "price");
+      newParams.set("_order", value);
+    } else {
+      newParams.set(key, value);
+    }
 
-  useEffect(() => {
-    dispatch(fetchProducts({ inputName, selectedCategory, sort, price, page }));
-  }, [inputName, selectedCategory, sort, price, page]);
+    if (key !== "_page") {
+      newParams.set("_page", 1);
+    }
 
-  useEffect(() => {
-    dispatch(fetchFavorites());
-    dispatch(loadCart());
-  }, []);
-
-  const handleChangeCategory = (changedCategory) => {
-    changedCategory === selectedCategory
-      ? setSelectedCategory("")
-      : setSelectedCategory(changedCategory);
-    setShowNawbar(false);
+    setSearchParams(newParams);
   };
+
+  useEffect(() => {
+    if (searchParams) {
+      dispatch(fetchProducts(searchParams.toString()));
+    }
+  }, [searchParams]);
+
+  useEffect(() => {
+    newParams.set("_page", "1");
+    setSearchParams(newParams);
+    dispatch(fetchFavorites());
+  }, []);
 
   const handleInput = (text: string) => {
     setInputName(text);
@@ -62,37 +64,32 @@ export function App() {
     });
   };
 
-  const handleChangeSort = (order) => {
-    setSort(order);
-  };
-
   return (
     <>
-      <Header handleInput={handleInput} toggleNavbar={toggleNavbar} />
+      <Header
+        handleChangeFilters={handleChangeFilters}
+        toggleNavbar={toggleNavbar}
+        searchParams={searchParams}
+      />
       <Drawer
         open={showNawbar}
         placement="left"
         onClose={() => setShowNawbar(false)}
       >
         <Navbar
-          handleChangeCategory={handleChangeCategory}
-          selectedCategory={selectedCategory}
-          setPrice={setPrice}
-          price={price}
+          handleChangeFilters={handleChangeFilters}
+          searchParams={searchParams}
         />
       </Drawer>
       <main className={s.main}>
         <Routes>
           <Route
             path="/"
+            searchParams={searchParams}
             element={
               <MainPage
-                handleChangeSort={handleChangeSort}
-                handleInput={handleInput}
-                handleChangeCategory={handleChangeCategory}
-                selectedCategory={selectedCategory}
-                page={page}
-                setPage={setPage}
+                handleChangeFilters={handleChangeFilters}
+                searchParams={searchParams}
               />
             }
           />

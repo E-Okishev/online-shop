@@ -7,8 +7,9 @@ import { FavoriteIconInHeader } from "../FavoriteIconInHeader/FavoriteIconInHead
 import { Link } from "react-router-dom";
 import { CartIcon } from "../cartIcon/CartIcon";
 import { useDispatch, useSelector } from "react-redux";
+import { Input, Button } from "antd";
 
-export function Header({ handleInput, toggleNavbar }) {
+export function Header({ handleChangeFilters, toggleNavbar, searchParams }) {
   const favorites = useSelector((state: RootState) => state.favorite.favorites);
   const cartItems = useSelector((state: RootState) => state.cart.cart);
 
@@ -19,15 +20,14 @@ export function Header({ handleInput, toggleNavbar }) {
       <Link to="/">
         <img src={logo} alt="Logo" />
       </Link>
-      <button className={s.catalogButton} onClick={toggleNavbar}>
+      <Button type="primary" onClick={toggleNavbar}>
         <img src={icon} alt="icon" />
         <p>Каталог</p>
-      </button>
-      <input
-        className={s.input}
-        type="text"
+      </Button>
+      <Input
         placeholder="Поиск"
-        onChange={(e) => handleInput(e.target.value)}
+        onChange={(e) => handleChangeFilters("q", e.target.value)}
+        value={searchParams.get("q")}
       />
       <Link className={s.link} to="/favorites">
         <div className={s.headerIcons}>

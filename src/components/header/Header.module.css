@@ -11,41 +11,6 @@
   border-bottom-right-radius: 32px;
 }
 
-.catalogButton {
-  background-color: #005bff;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: inherit;
-  font-weight: inherit;
-  padding: 10px 16px;
-  gap: 8px;
-  cursor: pointer;
-}
-
-.catalogButton:hover {
-  opacity: 0.9;
-}
-
-.input {
-  padding-inline-start: 0.5rem;
-  width: 100%;
-  font-size: 16px;
-  font-weight: 400;
-  letter-spacing: 0.2px;
-  border-radius: 8px;
-  height: 40px;
-  border: 2px solid #005bff;
-}
-
-.input:focus {
-  outline: none;
-  border-width: 3px;
-}
-
 .link {
   text-decoration: none;
 }

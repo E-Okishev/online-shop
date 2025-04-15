@@ -7,14 +7,7 @@ import { Sort } from "../../components/sort/Sort";
 import { Typography, Pagination } from "antd";
 const { Title } = Typography;
 
-export const MainPage = ({
-  handleInput,
-  handleChangeCategory,
-  selectedCategory,
-  handleChangeSort,
-  page,
-  setPage,
-}) => {
+export const MainPage = ({ searchParams, handleChangeFilters }) => {
   const { products } = useSelector((state: RootState) => state.products);
   const dispatch = useDispatch();
 
@@ -30,12 +23,15 @@ export const MainPage = ({
 
   return (
     <>
-      {selectedCategory ? (
-        <Title>{categoryNamе[selectedCategory]}</Title>
+      {searchParams.get("category") ? (
+        <Title>{categoryNamе[searchParams.get("category")]}</Title>
       ) : (
         <Title>Все товары</Title>
       )}
-      <Sort handleChangeSort={handleChangeSort} />
+      <Sort
+        searchParams={searchParams}
+        handleChangeFilters={handleChangeFilters}
+      />
       {loading ? (
         <p>Loading...</p>
       ) : products.length === 0 ? (
@@ -50,9 +46,9 @@ export const MainPage = ({
       <Pagination
         style={{ marginTop: "1rem" }}
         align="center"
-        current={page}
+        current={searchParams.get("_page")}
         total={25}
-        onChange={(page) => setPage(page)}
+        onChange={(page) => handleChangeFilters("_page", page)}
       />
     </>
   );
