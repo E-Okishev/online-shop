@@ -5,16 +5,15 @@ import { CardItem } from "../../components/cardItem/CardItem";
 import s from "../main/mainPage.module.css";
 import { favoritesSlice } from "../../slices/favoritesSlice";
 import { Typography } from "antd";
+import { CardItemSkeleton } from "../../components/cardItem/cardItemSkeleton";
 const { Title } = Typography;
 
 export const FavoritePage = () => {
-  const favorites = useSelector((state: RootState) => state.favorite.favorites);
-  const favoritesLoading = useSelector(
-    (state: RootState) => state.favorite.favoritesLoading
+  const { favorites } = useSelector((state: RootState) => state.favorite);
+  const { favoritesLoading } = useSelector(
+    (state: RootState) => state.favorite
   );
-  const favoritesError = useSelector(
-    (state: RootState) => state.favorite.favoritesError
-  );
+  const { favoritesError } = useSelector((state: RootState) => state.favorite);
   const dispatch = useDispatch();
 
   return (
@@ -22,16 +21,17 @@ export const FavoritePage = () => {
       <Title>Избранное</Title>
       {favoritesError && <p>Error... sory</p>}
       {favoritesLoading ? (
-        <p>Loading...</p>
+        <div className={s.cardList}>
+          {[...Array(10).keys()].map((i) => (
+            <CardItemSkeleton key={i} />
+          ))}
+        </div>
       ) : favorites.length === 0 ? (
         <p>В избранном пусто</p>
       ) : (
         <div className={s.cardList}>
           {favorites.map((product) => (
-            <CardItem
-              key={product.id}
-              product={product}
-            />
+            <CardItem key={product.id} product={product} />
           ))}
         </div>
       )}

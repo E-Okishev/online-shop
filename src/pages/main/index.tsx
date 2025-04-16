@@ -5,6 +5,7 @@ import { CardItem } from "../../components/cardItem/CardItem";
 import s from "./mainPage.module.css";
 import { Sort } from "../../components/sort/Sort";
 import { Typography, Pagination } from "antd";
+import { MainSkeleton } from "./mainSkeleton";
 const { Title } = Typography;
 
 export const MainPage = ({ searchParams, handleChangeFilters }) => {
@@ -23,33 +24,36 @@ export const MainPage = ({ searchParams, handleChangeFilters }) => {
 
   return (
     <>
-      {searchParams.get("category") ? (
-        <Title>{categoryNamе[searchParams.get("category")]}</Title>
-      ) : (
-        <Title>Все товары</Title>
-      )}
-      <Sort
-        searchParams={searchParams}
-        handleChangeFilters={handleChangeFilters}
-      />
       {loading ? (
-        <p>Loading...</p>
+        <MainSkeleton />
       ) : products.length === 0 ? (
         <p>Товаров нет</p>
       ) : (
-        <div className={s.cardList}>
-          {products.map((product) => (
-            <CardItem key={product.id} product={product} />
-          ))}
-        </div>
+        <>
+          {searchParams.get("category") ? (
+            <Title>{categoryNamе[searchParams.get("category")]}</Title>
+          ) : (
+            <Title>Все товары</Title>
+          )}
+          <Sort
+            searchParams={searchParams}
+            handleChangeFilters={handleChangeFilters}
+          />
+          <div className={s.cardList}>
+            {products.map((product) => (
+              <CardItem key={product.id} product={product} />
+            ))}
+          </div>
+
+          <Pagination
+            style={{ marginTop: "1rem" }}
+            align="center"
+            current={searchParams.get("_page")}
+            total={25}
+            onChange={(page) => handleChangeFilters("_page", page)}
+          />
+        </>
       )}
-      <Pagination
-        style={{ marginTop: "1rem" }}
-        align="center"
-        current={searchParams.get("_page")}
-        total={25}
-        onChange={(page) => handleChangeFilters("_page", page)}
-      />
     </>
   );
 };

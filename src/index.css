@@ -116,6 +116,8 @@ body {
 	border: 0;
 	font-family: "Rubik", serif;
 	background-color: #F4F7FA;
+	max-width: 1440px;
+	margin: 0 auto;
 }
 
 ol,
