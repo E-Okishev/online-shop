@@ -13,6 +13,7 @@ import { MainPage } from "./pages/main";
 import { CartPage } from "./pages/cartPage";
 import { CardPage } from "./pages/cardPage";
 import { Drawer } from "antd";
+import { loadCart } from "./slices/cartSlice";
 
 export const BASE_URL = "http://localhost:5000";
 
@@ -52,6 +53,7 @@ export const App = () => {
     newParams.set("_page", "1");
     setSearchParams(newParams);
     dispatch(fetchFavorites());
+    dispatch(loadCart())
   }, []);
 
   const handleInput = (text: string) => {

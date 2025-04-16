@@ -13,17 +13,24 @@ import { debounce } from "lodash";
 
 export const Header = memo(
   ({ handleChangeFilters, toggleNavbar, searchParams }) => {
-    const favorites = useSelector(
-      (state: RootState) => state.favorite.favorites
-    );
-    const cartItems = useSelector((state: RootState) => state.cart.cart);
-
-    const dispatch = useDispatch();
-
     const debounced = debounce(
       (e) => handleChangeFilters("q", e.target.value),
       500
     );
+
+    const { cart } = useSelector((state: RootState) => state.cart);
+    const { favorites } = useSelector((state: RootState) => state.favorite);
+
+    const dispatch = useDispatch();
+
+    const productCartQuantity = cart.reduce(
+      (acc, product) => acc + product.quantity,
+      0
+    );
+    const productFavoriteQuantity = favorites.reduce(
+      (acc, product) => acc + product.quantity,
+      0
+    );;
 
     return (
       <header className={s.header}>
@@ -41,8 +48,8 @@ export const Header = memo(
         />
         <Link className={s.link} to="/favorites">
           <div className={s.headerIcons}>
-            {favorites.length > 0 && (
-              <div className={s.favoriteCounter}>{favorites.length}</div>
+            {!!productFavoriteQuantity && (
+              <div className={s.favoriteCounter}>{productFavoriteQuantity}</div>
             )}
             <FavoriteIconInHeader />
             <span className={s.headerIconsText}>Избранное</span>
@@ -50,8 +57,8 @@ export const Header = memo(
         </Link>
         <Link className={s.link} to="/cart">
           <div className={s.headerIcons}>
-            {cartItems.length > 0 && (
-              <div className={s.favoriteCounter}>{cartItems.length}</div>
+            {!!productCartQuantity && (
+              <div className={s.favoriteCounter}>{productCartQuantity}</div>
             )}
             <CartIcon />
             <span className={s.headerIconsText}>Корзина</span>
