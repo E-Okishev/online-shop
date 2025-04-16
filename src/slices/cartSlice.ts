@@ -5,7 +5,7 @@ import { BASE_URL } from "../App";
 
 export const loadCart = createAsyncThunk(
   "products/loadCart",
-  async (param, thunkAPI) => {
+  async () => {
     const response = await fetch(`${BASE_URL}/cart`);
     const result = await response.json();
     
@@ -39,7 +39,7 @@ export const deleteCart = createAsyncThunk(
 
 export const updateProductInCart = createAsyncThunk(
   "products/updateProductInCart",
-  async (updatedProduct, thunkAPI) => {
+  async (updatedProduct) => {
     await fetch(`${BASE_URL}/cart/${updatedProduct.id}`, {
       method: "PUT",
       body: JSON.stringify(updatedProduct),

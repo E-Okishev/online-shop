@@ -1,11 +1,9 @@
 // @ts-nocheck
 
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import s from "./CartPage.module.css";
 import { CardItemForCart } from "../../components/cardItem/cardItemForCart";
 import { declension, formatedPrice } from "../../utils";
-import { updateProductInCart } from "../../slices/cartSlice";
 import { Typography } from "antd";
 const { Title } = Typography;
 
@@ -13,7 +11,6 @@ export const CartPage = () => {
   const cartItems = useSelector((state: RootState) => state.cart.cart);
   const cartLoading = useSelector((state: RootState) => state.cart.cartLoading);
   const cartError = useSelector((state: RootState) => state.cart.cartError);
-  const dispatch = useDispatch();
 
   const totalPrice = cartItems.reduce((acc, product) => {
     const priceToUse = product.newPrice || product.price;
@@ -47,10 +44,7 @@ export const CartPage = () => {
         <div className={s.card}>
           <div className={s.cardList}>
             {cartItems.map((product) => (
-              <CardItemForCart
-                key={product.id}
-                product={product}
-              />
+              <CardItemForCart key={product.id} product={product} />
             ))}
           </div>
           <div className={s.sum}>

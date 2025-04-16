@@ -5,7 +5,7 @@ import { BASE_URL } from "../App";
 
 export const fetchFavorites = createAsyncThunk(
   "products/fetchFavorites",
-  async (param, thunkAPI) => {
+  async () => {
     const response = await fetch(`${BASE_URL}/favorites`);
     const result = await response.json();
 

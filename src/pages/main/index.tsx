@@ -1,6 +1,6 @@
 // @ts-nocheck
 
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { CardItem } from "../../components/cardItem/CardItem";
 import s from "./mainPage.module.css";
 import { Sort } from "../../components/sort/Sort";
@@ -10,7 +10,6 @@ const { Title } = Typography;
 
 export const MainPage = ({ searchParams, handleChangeFilters }) => {
   const { products } = useSelector((state: RootState) => state.products);
-  const dispatch = useDispatch();
 
   const loading = useSelector(
     (state: RootState) => state.products.productsLoading

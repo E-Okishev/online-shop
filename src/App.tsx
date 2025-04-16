@@ -6,7 +6,7 @@ import { Route, Routes, useSearchParams } from "react-router-dom";
 import { Header } from "./components/header/Header";
 import { Navbar } from "./components/navbar/Navbar";
 import { fetchFavorites } from "./slices/favoritesSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { fetchProducts } from "./slices/productsSlice";
 import { FavoritePage } from "./pages/favorite";
 import { MainPage } from "./pages/main";

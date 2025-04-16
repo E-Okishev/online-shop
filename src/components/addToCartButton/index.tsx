@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { CartIcon } from "../cartIcon/CartIcon";
 import s from "./addToCartButton.module.css";
 import { addToCart, deleteCart } from "../../slices/cartSlice";
-import { Button } from "antd";
 
 export function AddToCartButton({ product }) {
   const cartItems = useSelector((state: RootState) => state.cart.cart);

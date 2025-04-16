@@ -1,6 +1,5 @@
 // @ts-nocheck
 
-import { useDispatch, useSelector } from "react-redux";
 import star from "../../img/rateStar.svg";
 import s from "./CardItem.module.css";
 import { formatedPrice, salePercent } from "../../utils.tsx";
@@ -17,7 +16,6 @@ export const CardItem = memo(({ product }) => {
     price,
     newPrice,
     currency,
-    category,
     rating,
     photo,
   } = product;

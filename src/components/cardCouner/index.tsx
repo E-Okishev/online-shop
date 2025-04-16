@@ -3,7 +3,6 @@
 import s from "./cardCouner.module.css";
 
 export function CardCounter({
-  productId,
   quantity,
   handleChangePlusQuantity,
   handleChangeMinusQuantity,

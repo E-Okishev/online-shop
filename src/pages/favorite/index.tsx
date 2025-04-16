@@ -3,7 +3,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { CardItem } from "../../components/cardItem/CardItem";
 import s from "../main/mainPage.module.css";
-import { favoritesSlice } from "../../slices/favoritesSlice";
 import { Typography } from "antd";
 import { CardItemSkeleton } from "../../components/cardItem/cardItemSkeleton";
 const { Title } = Typography;

@@ -5,7 +5,7 @@ import { BASE_URL } from "../App";
 
 export const loadProduct = createAsyncThunk(
   "products/loadProduct",
-  async (id, thunkAPI) => {
+  async (id) => {
     const response = await fetch(`${BASE_URL}/products/${id}`);
     const result = await response.json();
 

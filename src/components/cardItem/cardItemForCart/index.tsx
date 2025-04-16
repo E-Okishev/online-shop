@@ -10,20 +10,9 @@ import { deleteCart, updateProductInCart } from "../../../slices/cartSlice.ts";
 import { DeleteButton } from "../../deleteButton/index.tsx";
 import { Link } from "react-router-dom";
 
-export const CardItemForCart = memo(({
-  product,
-}) => {
-  const {
-    id,
-    brand,
-    name,
-    price,
-    newPrice,
-    currency,
-    category,
-    photo,
-    quantity,
-  } = product;
+export const CardItemForCart = memo(({ product }) => {
+  const { id, brand, name, price, newPrice, currency, photo, quantity } =
+    product;
 
   const dispatch = useDispatch();
 
@@ -96,7 +85,7 @@ export const CardItemForCart = memo(({
   return (
     <div className={s.cardItem}>
       <Link to={`/product/${id}`} className={s.cardImg}>
-          <img className={s.photo} src={photo} alt={name} />
+        <img className={s.photo} src={photo} alt={name} />
       </Link>
       <div className={s.description}>
         <Link to={`/product/${id}`}>
