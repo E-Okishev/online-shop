@@ -7,10 +7,9 @@ import { formatedPrice, salePercent } from "../../utils.tsx";
 import { FavoriteButton } from "../favoriteButton/index.tsx";
 import { Link } from "react-router-dom";
 import { AddToCartButton } from "../addToCartButton/index.tsx";
+import { memo } from "react";
 
-export function CardItem({
-  product,
-}) {
+export const CardItem = memo(({ product }) => {
   const {
     id,
     brand,
@@ -70,4 +69,4 @@ export function CardItem({
       </div>
     </div>
   );
-}
+});

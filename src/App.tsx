@@ -1,6 +1,6 @@
 // @ts-nocheck
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import s from "./App.module.css";
 import { Route, Routes, useSearchParams } from "react-router-dom";
 import { Header } from "./components/header/Header";
@@ -16,7 +16,7 @@ import { Drawer } from "antd";
 
 export const BASE_URL = "http://localhost:5000";
 
-export function App() {
+export const App = () => {
   const [showNawbar, setShowNawbar] = useState<boolean>(false);
 
   let [searchParams, setSearchParams] = useSearchParams();
@@ -24,7 +24,7 @@ export function App() {
   const dispatch = useDispatch();
   const newParams = new URLSearchParams(searchParams);
 
-  const handleChangeFilters = (key, value) => {
+  const handleChangeFilters = useCallback((key, value) => {
     if (newParams.get(key) === value || !value) {
       newParams.delete(key);
       key === "_order" && newParams.delete("_sort");
@@ -40,7 +40,7 @@ export function App() {
     }
 
     setSearchParams(newParams);
-  };
+  }, []);
 
   useEffect(() => {
     if (searchParams) {
@@ -58,11 +58,9 @@ export function App() {
     setInputName(text);
   };
 
-  const toggleNavbar = () => {
-    setShowNawbar((prev) => {
-      return !prev;
-    });
-  };
+  const toggleNavbar = useCallback(() => {
+    setShowNawbar(!showNawbar);
+  }, []);
 
   return (
     <>
@@ -101,4 +99,4 @@ export function App() {
       </main>
     </>
   );
-}
+};

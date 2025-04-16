@@ -5,12 +5,12 @@ import s from "./CardItemForCart.module.css";
 import { formatedPrice } from "../../../utils.tsx";
 import { FavoriteButton } from "../../favoriteButton/index.tsx";
 import { CardCounter } from "../../cardCouner/index.tsx";
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { deleteCart, updateProductInCart } from "../../../slices/cartSlice.ts";
 import { DeleteButton } from "../../deleteButton/index.tsx";
 import { Link } from "react-router-dom";
 
-export const CardItemForCart = ({
+export const CardItemForCart = memo(({
   product,
 }) => {
   const {
@@ -131,4 +131,4 @@ export const CardItemForCart = ({
       </div>
     </div>
   );
-};
+});

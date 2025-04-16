@@ -313,18 +313,6 @@
       "photo": "https://ir.ozone.ru/s3/multimedia-1/wc1000/6759283957.jpg"
     },
     {
-      "id": 1,
-      "brand": "Samsung",
-      "name": "Galaxy S25 Ultra 12/1 ТБ",
-      "price": 238339,
-      "newPrice": 210043,
-      "currency": "₽",
-      "category": "phone",
-      "rating": 5,
-      "quantity": 1,
-      "photo": "https://ir.ozone.ru/s3/multimedia-1-4/wc1000/7302914176.jpg"
-    },
-    {
       "id": 3,
       "brand": "ASUS",
       "name": "ASUS ROG Zephyrus G14 Игровой ноутбук 14\", AMD Ryzen 9 8945HS, RAM 32 ГБ, SSD 1024 ГБ, NVIDIA GeForce RTX 4070 для ноутбуков (8 Гб), Windows Home",
@@ -339,18 +327,6 @@
   ],
   "cart": [
     {
-      "id": 1,
-      "brand": "Samsung",
-      "name": "Galaxy S25 Ultra 12/1 ТБ",
-      "price": 238339,
-      "newPrice": 210043,
-      "currency": "₽",
-      "category": "phone",
-      "rating": 5,
-      "quantity": 1,
-      "photo": "https://ir.ozone.ru/s3/multimedia-1-4/wc1000/7302914176.jpg"
-    },
-    {
       "id": 25,
       "brand": "KV",
       "name": "ECOM FIX111 Ноутбук 14\", Intel Celeron N3350, RAM 6 ГБ, SSD 128 ГБ, AMD Radeon, серый металлик",
@@ -359,8 +335,32 @@
       "currency": "₽",
       "category": "laptop",
       "rating": 3.1,
-      "quantity": 1,
+      "quantity": 10,
       "photo": "https://ir.ozone.ru/s3/multimedia-1-x/wc1000/7233371709.jpg"
+    },
+    {
+      "id": 3,
+      "brand": "ASUS",
+      "name": "ASUS ROG Zephyrus G14 Игровой ноутбук 14\", AMD Ryzen 9 8945HS, RAM 32 ГБ, SSD 1024 ГБ, NVIDIA GeForce RTX 4070 для ноутбуков (8 Гб), Windows Home",
+      "price": 250290,
+      "newPrice": 0,
+      "currency": "₽",
+      "category": "laptop",
+      "rating": 5,
+      "quantity": 23,
+      "photo": "https://ir.ozone.ru/s3/multimedia-1-1/wc1000/6933824377.jpg"
+    },
+    {
+      "id": 2,
+      "brand": "Apple",
+      "name": "iPhone 15 SIM+eSIM 128 ГБ",
+      "price": 89990,
+      "newPrice": 86029,
+      "currency": "₽",
+      "category": "phone",
+      "rating": 4.8,
+      "quantity": 8,
+      "photo": "https://ir.ozone.ru/s3/multimedia-1/wc1000/6759283957.jpg"
     }
   ],
   "comments": [

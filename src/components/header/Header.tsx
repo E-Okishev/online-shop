@@ -8,10 +8,12 @@ import { Link } from "react-router-dom";
 import { CartIcon } from "../cartIcon/CartIcon";
 import { useDispatch, useSelector } from "react-redux";
 import { Input, Button } from "antd";
+import { memo } from "react";
 
-export function Header({ handleChangeFilters, toggleNavbar, searchParams }) {
+export const Header = memo(({ handleChangeFilters, toggleNavbar, searchParams }) => {
   const favorites = useSelector((state: RootState) => state.favorite.favorites);
   const cartItems = useSelector((state: RootState) => state.cart.cart);
+console.log('header');
 
   const dispatch = useDispatch();
 
@@ -49,4 +51,4 @@ export function Header({ handleChangeFilters, toggleNavbar, searchParams }) {
       </Link>
     </header>
   );
-}
+})
