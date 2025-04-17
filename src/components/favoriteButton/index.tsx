@@ -1,12 +1,12 @@
 // @ts-nocheck
 
-import { useDispatch, useSelector } from "react-redux";
 import {
   addToFavorites,
   deleteFavorites,
 } from "../../slices/favoritesSlice.ts";
 import { FavoriteIconWithCard } from "../FavoriteIconWithCard/FavoriteIconWithCard.tsx";
 import s from "./favorite.module.css";
+import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks.ts";
 
 type FavoriteButtonProps = {
   product: object;
@@ -14,9 +14,9 @@ type FavoriteButtonProps = {
 };
 
 export function FavoriteButton({ product, className = "" }: FavoriteButtonProps) {
-  const favorites = useSelector((state) => state.favorite.favorites);
+  const favorites = useAppSelector((state) => state.favorite.favorites);
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const onClickFavorites = () => {
     if (favorites.some((e) => e.id === product.id)) {

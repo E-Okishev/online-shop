@@ -1,6 +1,5 @@
 // @ts-nocheck
 
-import { useDispatch } from "react-redux";
 import s from "./CardItemForCart.module.css";
 import { formatedPrice } from "../../../utils.tsx";
 import { FavoriteButton } from "../../favoriteButton/index.tsx";
@@ -9,12 +8,13 @@ import { memo, useEffect, useState } from "react";
 import { deleteCart, updateProductInCart } from "../../../slices/cartSlice.ts";
 import { DeleteButton } from "../../deleteButton/index.tsx";
 import { Link } from "react-router-dom";
+import { useAppDispatch } from "../../../hooks/reduxHooks.ts";
 
 export const CardItemForCart = memo(({ product }) => {
   const { id, brand, name, price, newPrice, currency, photo, quantity } =
     product;
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const [localQuantity, setLocalQuantity] = useState(quantity);
 

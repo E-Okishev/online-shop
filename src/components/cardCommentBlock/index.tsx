@@ -5,7 +5,7 @@ import type { FormProps } from "antd";
 import { Input, Button, Typography, Form } from "antd";
 import { useEffect } from "react";
 import { createComment, loadComments } from "../../slices/cardSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
 const { Title } = Typography;
 const { TextArea } = Input;
 
@@ -15,8 +15,8 @@ type FieldType = {
 };
 
 export const CardCommentBlock: React.FC = ({ productId }) => {
-  const dispatch = useDispatch();
-  const { comments } = useSelector((state) => state.card);
+  const dispatch = useAppDispatch();
+  const { comments } = useAppSelector((state) => state.card);
   const [form] = Form.useForm();
 
   const date = new Date().toLocaleString();

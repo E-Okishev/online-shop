@@ -1,16 +1,16 @@
 // @ts-nocheck
 
-import { useSelector } from "react-redux";
 import s from "./CartPage.module.css";
 import { CardItemForCart } from "../../components/cardItem/cardItemForCart";
 import { declension, formatedPrice } from "../../utils";
 import { Typography } from "antd";
+import { useAppSelector } from "../../hooks/reduxHooks";
 const { Title } = Typography;
 
 export const CartPage = () => {
-  const cartItems = useSelector((state: RootState) => state.cart.cart);
-  const cartLoading = useSelector((state: RootState) => state.cart.cartLoading);
-  const cartError = useSelector((state: RootState) => state.cart.cartError);
+  const cartItems = useAppSelector((state: RootState) => state.cart.cart);
+  const cartLoading = useAppSelector((state: RootState) => state.cart.cartLoading);
+  const cartError = useAppSelector((state: RootState) => state.cart.cartError);
 
   const totalPrice = cartItems.reduce((acc, product) => {
     const priceToUse = product.newPrice || product.price;

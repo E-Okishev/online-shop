@@ -6,10 +6,10 @@ import s from "./Header.module.css";
 import { FavoriteIconInHeader } from "../FavoriteIconInHeader/FavoriteIconInHeader";
 import { Link } from "react-router-dom";
 import { CartIcon } from "../cartIcon/CartIcon";
-import { useDispatch, useSelector } from "react-redux";
 import { Input, Button } from "antd";
 import { memo } from "react";
 import { debounce } from "lodash";
+import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
 
 export const Header = memo(
   ({ handleChangeFilters, toggleNavbar, searchParams }) => {
@@ -18,10 +18,10 @@ export const Header = memo(
       500
     );
 
-    const { cart } = useSelector((state: RootState) => state.cart);
-    const { favorites } = useSelector((state: RootState) => state.favorite);
+    const { cart } = useAppSelector((state: RootState) => state.cart);
+    const { favorites } = useAppSelector((state: RootState) => state.favorite);
 
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
     const productCartQuantity = cart.reduce(
       (acc, product) => acc + product.quantity,

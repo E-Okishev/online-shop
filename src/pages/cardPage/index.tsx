@@ -2,7 +2,6 @@
 
 import { useParams } from "react-router-dom";
 import s from "./CardPage.module.css";
-import { useDispatch, useSelector } from "react-redux";
 import { loadProduct } from "../../slices/cardSlice";
 import { useEffect } from "react";
 import star from "../../img/rateStar.svg";
@@ -12,14 +11,15 @@ import { FavoriteButton } from "../../components/favoriteButton";
 import { AddToCartButton } from "../../components/addToCartButton/index.tsx";
 import { Typography } from "antd";
 import { CardCommentBlock } from "../../components/cardCommentBlock/index.tsx";
+import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks.ts";
 const { Title } = Typography;
 
 export const CardPage = () => {
   const { id } = useParams();
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  const { product } = useSelector((state) => state.card);
+  const { product } = useAppSelector((state) => state.card);
 
   useEffect(() => {
     dispatch(loadProduct(id));
