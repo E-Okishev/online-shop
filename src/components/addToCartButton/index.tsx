@@ -6,7 +6,6 @@ import { addToCart, deleteCart } from "../../slices/cartSlice";
 
 export function AddToCartButton({ product }) {
   const cartItems = useSelector((state: RootState) => state.cart.cart);
-
   const dispatch = useDispatch();
 
   const isInCart = cartItems.some((item) => item.id === product.id);

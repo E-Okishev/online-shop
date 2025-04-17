@@ -1,12 +1,16 @@
-// @ts-nocheck
-
 import s from "./cardCouner.module.css";
+
+type CardCounterProps = {
+  quantity: number;
+  handleChangePlusQuantity: () => void;
+  handleChangeMinusQuantity: () => void;
+};
 
 export function CardCounter({
   quantity,
   handleChangePlusQuantity,
   handleChangeMinusQuantity,
-}) {
+}: CardCounterProps) {
   return (
     <div className={s.counter}>
       <button onClick={handleChangeMinusQuantity}>

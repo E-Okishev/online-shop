@@ -1,6 +1,8 @@
-// @ts-nocheck
+type favoriteIconProps = {
+  active: boolean;
+};
 
-export const FavoriteIconWithCard = ({ active }) => {
+export const FavoriteIconWithCard = ({ active }: favoriteIconProps) => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
       <path

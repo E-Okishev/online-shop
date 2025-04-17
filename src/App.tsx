@@ -25,7 +25,7 @@ export const App = () => {
   const dispatch = useDispatch();
   const newParams = new URLSearchParams(searchParams);
 
-  const handleChangeFilters = useCallback((key, value) => {
+  const handleChangeFilters = useCallback((key: string, value: string) => {
     if (newParams.get(key) === value || !value) {
       newParams.delete(key);
       key === "_order" && newParams.delete("_sort");
@@ -53,12 +53,8 @@ export const App = () => {
     newParams.set("_page", "1");
     setSearchParams(newParams);
     dispatch(fetchFavorites());
-    dispatch(loadCart())
+    dispatch(loadCart());
   }, []);
-
-  const handleInput = (text: string) => {
-    setInputName(text);
-  };
 
   const toggleNavbar = useCallback(() => {
     setShowNawbar(!showNawbar);

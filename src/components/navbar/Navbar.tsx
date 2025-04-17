@@ -1,17 +1,16 @@
-// @ts-nocheck
-
 import { Input } from "antd";
 import s from "./Navbar.module.css";
 import { Typography } from "antd";
 import { Flex } from "antd";
 const { Title } = Typography;
 import { debounce } from "lodash";
+import { FilterParams } from "../../utils";
 
-export const Navbar = ({ handleChangeFilters, searchParams }) => {
-  const selectedCategory = searchParams.get("category"); 
+export const Navbar = ({ handleChangeFilters, searchParams }: FilterParams) => {
+  const selectedCategory = searchParams.get("category");
 
   const debouncedPrice = debounce(
-    (key, value) => handleChangeFilters(key, value),
+    (key: string, value: string) => handleChangeFilters(key, value),
     500
   );
 
@@ -55,13 +54,13 @@ export const Navbar = ({ handleChangeFilters, searchParams }) => {
           <Input
             placeholder="От"
             onChange={(e) => debouncedPrice("price_gte", e.target.value)}
-            defaultValue={searchParams.get("price_gte")}
+            defaultValue={searchParams.get("price_gte") || ""}
           ></Input>
           <span>—</span>
           <Input
             placeholder="До"
             onChange={(e) => debouncedPrice("price_lte", e.target.value)}
-            defaultValue={searchParams.get("price_lte")}
+            defaultValue={searchParams.get("price_lte") || ""}
           ></Input>
         </Flex>
       </div>

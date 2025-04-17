@@ -1,5 +1,10 @@
 // @ts-nocheck
 
+export type FilterParams = {
+  handleChangeFilters: (key: string, value: string) => void;
+  searchParams: URLSearchParams;
+};
+
 export const salePercent = (price, newPrice) => {
   return Math.round((newPrice * 100) / price - 100);
 };

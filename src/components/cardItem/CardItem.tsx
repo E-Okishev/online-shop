@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 import star from "../../img/rateStar.svg";
 import s from "./CardItem.module.css";
 import { formatedPrice, salePercent } from "../../utils.tsx";
@@ -8,17 +6,23 @@ import { Link } from "react-router-dom";
 import { AddToCartButton } from "../addToCartButton/index.tsx";
 import { memo } from "react";
 
-export const CardItem = memo(({ product }) => {
-  const {
-    id,
-    brand,
-    name,
-    price,
-    newPrice,
-    currency,
-    rating,
-    photo,
-  } = product;
+type ProductType = {
+  id: number;
+  brand: string;
+  name: string;
+  price: number;
+  newPrice: number;
+  currency: string;
+  rating: number;
+  photo: string;
+};
+
+type CardItemProps = {
+  product: ProductType;
+};
+
+export const CardItem = memo(({ product }: CardItemProps) => {
+  const { id, brand, name, price, newPrice, currency, rating, photo } = product;
 
   return (
     <div className={s.card}>

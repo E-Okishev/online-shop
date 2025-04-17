@@ -8,7 +8,12 @@ import {
 import { FavoriteIconWithCard } from "../FavoriteIconWithCard/FavoriteIconWithCard.tsx";
 import s from "./favorite.module.css";
 
-export function FavoriteButton({ product, className = "" }) {
+type FavoriteButtonProps = {
+  product: object;
+  className: string;
+};
+
+export function FavoriteButton({ product, className = "" }: FavoriteButtonProps) {
   const favorites = useSelector((state) => state.favorite.favorites);
 
   const dispatch = useDispatch();
