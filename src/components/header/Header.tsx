@@ -1,14 +1,15 @@
 import logo from "../../img/logo.svg";
 import icon from "../../img/buttonIcon.svg";
 import s from "./Header.module.css";
-import { FavoriteIconInHeader } from "../FavoriteIconInHeader/FavoriteIconInHeader";
+import { FavoriteIconInHeader } from "../icons/FavoriteIconInHeader/FavoriteIconInHeader";
 import { Link } from "react-router-dom";
-import { CartIcon } from "../cartIcon/CartIcon";
+import { CartIcon } from "../icons/cartIcon/CartIcon";
 import { Input, Button } from "antd";
 import { memo } from "react";
 import { debounce } from "lodash";
 import { useAppSelector } from "../../hooks/reduxHooks";
 import { FilterParams } from "../../utils";
+import { LoginIcon } from "../icons/loginIcon/LoginIcon";
 
 type HeaderProps = FilterParams & {
   toggleNavbar: () => void;
@@ -17,7 +18,8 @@ type HeaderProps = FilterParams & {
 export const Header = memo(
   ({ handleChangeFilters, toggleNavbar, searchParams }: HeaderProps) => {
     const debounced = debounce(
-      (e) => handleChangeFilters("q", e.target.value),
+      (e: React.ChangeEvent<HTMLInputElement>) =>
+        handleChangeFilters("q", e.target.value),
       500
     );
 
@@ -47,6 +49,10 @@ export const Header = memo(
           onChange={debounced}
           defaultValue={searchParams.get("q") || ""}
         />
+        <div className={s.headerIcons}>
+          <LoginIcon />
+          <span className={s.headerIconsText}>Войти</span>
+        </div>
         <Link className={s.link} to="/favorites">
           <div className={s.headerIcons}>
             {!!productFavoriteQuantity && (

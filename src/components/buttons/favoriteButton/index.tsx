@@ -1,14 +1,14 @@
 import {
   addToFavorites,
   deleteFavorites,
-} from "../../slices/favoritesSlice.ts";
-import { FavoriteIconWithCard } from "../FavoriteIconWithCard/FavoriteIconWithCard.tsx";
+} from "../../../slices/favoritesSlice.ts";
+import { FavoriteIconWithCard } from "../../icons/FavoriteIconWithCard/FavoriteIconWithCard.tsx";
 import s from "./favorite.module.css";
-import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks.ts";
-import { ProductType } from "../../utils.tsx";
+import { useAppDispatch, useAppSelector } from "../../../hooks/reduxHooks.ts";
+import { ProductType } from "../../../utils.tsx";
 
 type FavoriteButtonProps = {
-  product: ProductType ;
+  product: ProductType;
   className?: string;
 };
 

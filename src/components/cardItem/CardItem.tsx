@@ -1,9 +1,9 @@
 import star from "../../img/rateStar.svg";
 import s from "./CardItem.module.css";
 import { formatedPrice, salePercent } from "../../utils.tsx";
-import { FavoriteButton } from "../favoriteButton/index.tsx";
+import { FavoriteButton } from "../buttons/favoriteButton/index.tsx";
 import { Link } from "react-router-dom";
-import { AddToCartButton } from "../addToCartButton/index.tsx";
+import { AddToCartButton } from "../buttons/addToCartButton/index.tsx";
 import { memo } from "react";
 import { ProductType } from "../../utils.tsx";
 

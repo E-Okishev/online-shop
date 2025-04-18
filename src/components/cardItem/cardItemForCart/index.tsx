@@ -1,10 +1,10 @@
 import s from "./CardItemForCart.module.css";
 import { formatedPrice, ProductType } from "../../../utils.tsx";
-import { FavoriteButton } from "../../favoriteButton/index.tsx";
+import { FavoriteButton } from "../../buttons/favoriteButton/index.tsx";
 import { CardCounter } from "../../cardCouner/index.tsx";
 import { memo, useEffect, useState } from "react";
 import { deleteCart, updateProductInCart } from "../../../slices/cartSlice.ts";
-import { DeleteButton } from "../../deleteButton/index.tsx";
+import { DeleteButton } from "../../buttons/deleteButton/index.tsx";
 import { Link } from "react-router-dom";
 import { useAppDispatch } from "../../../hooks/reduxHooks.ts";
 
