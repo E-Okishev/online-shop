@@ -24,6 +24,13 @@ export type CommentType = {
   id: number;
 };
 
+export type UserType = {
+  name: string;
+  login: string;
+  password: string;
+  id: number;
+};
+
 export const salePercent = (price: number, newPrice: number): number => {
   return Math.round((newPrice * 100) / price - 100);
 };

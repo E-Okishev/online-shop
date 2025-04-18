@@ -33,7 +33,7 @@ export const App = () => {
     } else {
       newParams.set(key, value);
     }
-
+    
     if (key !== "_page") {
       newParams.set("_page", "1");
     }
