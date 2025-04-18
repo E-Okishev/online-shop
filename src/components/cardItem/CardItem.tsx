@@ -5,20 +5,10 @@ import { FavoriteButton } from "../favoriteButton/index.tsx";
 import { Link } from "react-router-dom";
 import { AddToCartButton } from "../addToCartButton/index.tsx";
 import { memo } from "react";
-
-type ProductType = {
-  id: number;
-  brand: string;
-  name: string;
-  price: number;
-  newPrice: number;
-  currency: string;
-  rating: number;
-  photo: string;
-};
+import { ProductType } from "../../utils.tsx";
 
 type CardItemProps = {
-  product: ProductType;
+  product: Omit<ProductType, 'category' | 'quantity'>;
 };
 
 export const CardItem = memo(({ product }: CardItemProps) => {
@@ -33,7 +23,7 @@ export const CardItem = memo(({ product }: CardItemProps) => {
         </div>
       </Link>
       <div className={s.description}>
-        {!newPrice ? (
+        {newPrice < 1 ? (
           <div className={s.priceBlock}>
             <p className={s.price}>
               {formatedPrice(price)}

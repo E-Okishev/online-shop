@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 import { useParams } from "react-router-dom";
 import s from "./CardPage.module.css";
 import { loadProduct } from "../../slices/cardSlice";
@@ -22,15 +20,16 @@ export const CardPage = () => {
   const { product } = useAppSelector((state) => state.card);
 
   useEffect(() => {
-    dispatch(loadProduct(id));
+    if (id) {
+      dispatch(loadProduct(id));
+    }
   }, []);
 
   if (!product) {
     return <div>Loading...</div>;
   }
 
-  const { brand, name, price, newPrice, currency, category, rating, photo } =
-    product;
+  const { brand, name, price, newPrice, currency, rating, photo } = product;
 
   return (
     <>
@@ -87,7 +86,7 @@ export const CardPage = () => {
           </div>
         </div>
       </div>
-      <CardCommentBlock productId={id} />
+      <CardCommentBlock productId={Number(id)} />
     </>
   );
 };

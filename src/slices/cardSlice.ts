@@ -1,9 +1,8 @@
-// @ts-nocheck
-
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { BASE_URL } from "../App";
+import { CommentType, ProductType } from "../utils";
 
-export const loadProduct = createAsyncThunk(
+export const loadProduct = createAsyncThunk<ProductType, string>(
   "products/loadProduct",
   async (id) => {
     const response = await fetch(`${BASE_URL}/products/${id}`);
@@ -13,7 +12,7 @@ export const loadProduct = createAsyncThunk(
   }
 );
 
-export const loadComments = createAsyncThunk(
+export const loadComments = createAsyncThunk<CommentType[], number>(
   "products/loadComments",
   async (id) => {
     const response = await fetch(`${BASE_URL}/comments?productId=${id}`);
@@ -23,7 +22,7 @@ export const loadComments = createAsyncThunk(
   }
 );
 
-export const createComment = createAsyncThunk(
+export const createComment = createAsyncThunk<void, Omit<CommentType, "id">>(
   "products/createComment",
   async (comment, { dispatch }) => {
     await fetch(`${BASE_URL}/comments`, {
@@ -37,7 +36,12 @@ export const createComment = createAsyncThunk(
   }
 );
 
-const initialState = {
+type InitialStateTypes = {
+  product: ProductType | null;
+  comments: CommentType[];
+};
+
+const initialState: InitialStateTypes = {
   product: null,
   comments: [],
 };
@@ -54,6 +58,7 @@ export const productSlice = createSlice({
       state.comments = action.payload;
     });
   },
+  reducers: {},
 });
 
 export default productSlice.reducer;

@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 import { useCallback, useEffect, useState } from "react";
 import s from "./App.module.css";
 import { Route, Routes, useSearchParams } from "react-router-dom";
@@ -37,7 +35,7 @@ export const App = () => {
     }
 
     if (key !== "_page") {
-      newParams.set("_page", 1);
+      newParams.set("_page", "1");
     }
 
     setSearchParams(newParams);
@@ -81,7 +79,6 @@ export const App = () => {
         <Routes>
           <Route
             path="/"
-            searchParams={searchParams}
             element={
               <MainPage
                 handleChangeFilters={handleChangeFilters}

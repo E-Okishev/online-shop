@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 import { CardItem } from "../../components/cardItem/CardItem";
 import s from "./mainPage.module.css";
 import { Sort } from "../../components/sort/Sort";
@@ -7,12 +5,14 @@ import { Typography, Pagination } from "antd";
 import { MainSkeleton } from "./mainSkeleton";
 import { useAppSelector } from "../../hooks/reduxHooks";
 const { Title } = Typography;
+import { FilterParams } from "../../utils";
 
-export const MainPage = ({ searchParams, handleChangeFilters }) => {
-  const { products } = useAppSelector((state: RootState) => state.products);
-
-  const loading = useAppSelector(
-    (state: RootState) => state.products.productsLoading
+export const MainPage = ({
+  searchParams,
+  handleChangeFilters,
+}: FilterParams) => {
+  const { products, productsLoading } = useAppSelector(
+    (state) => state.products
   );
 
   const categoryNamе = {
@@ -21,16 +21,20 @@ export const MainPage = ({ searchParams, handleChangeFilters }) => {
     laptop: "Ноутбуки",
   };
 
+  const categoryKey = searchParams.get("category");
+
   return (
     <>
-      {loading ? (
+      {productsLoading ? (
         <MainSkeleton />
       ) : products.length === 0 ? (
         <p>Товаров нет</p>
       ) : (
         <>
-          {searchParams.get("category") ? (
-            <Title>{categoryNamе[searchParams.get("category")]}</Title>
+          {categoryKey && categoryKey in categoryNamе ? (
+            <Title>
+              {categoryNamе[categoryKey as keyof typeof categoryNamе]}
+            </Title>
           ) : (
             <Title>Все товары</Title>
           )}
@@ -47,9 +51,11 @@ export const MainPage = ({ searchParams, handleChangeFilters }) => {
           <Pagination
             style={{ marginTop: "1rem" }}
             align="center"
-            current={searchParams.get("_page")}
+            current={
+              searchParams.get("_page") ? Number(searchParams.get("_page")) : 1
+            }
             total={25}
-            onChange={(page) => handleChangeFilters("_page", page)}
+            onChange={(page) => handleChangeFilters("_page", String(page))}
           />
         </>
       )}

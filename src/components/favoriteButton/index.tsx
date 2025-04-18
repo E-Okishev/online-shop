@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 import {
   addToFavorites,
   deleteFavorites,
@@ -7,13 +5,17 @@ import {
 import { FavoriteIconWithCard } from "../FavoriteIconWithCard/FavoriteIconWithCard.tsx";
 import s from "./favorite.module.css";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks.ts";
+import { ProductType } from "../../utils.tsx";
 
 type FavoriteButtonProps = {
-  product: object;
-  className: string;
+  product: ProductType ;
+  className?: string;
 };
 
-export function FavoriteButton({ product, className = "" }: FavoriteButtonProps) {
+export function FavoriteButton({
+  product,
+  className = "",
+}: FavoriteButtonProps) {
   const favorites = useAppSelector((state) => state.favorite.favorites);
 
   const dispatch = useAppDispatch();

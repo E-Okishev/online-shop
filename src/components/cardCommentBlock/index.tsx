@@ -1,8 +1,5 @@
-// @ts-nocheck
-
 import s from "./cardCommentBlock.module.css";
-import type { FormProps } from "antd";
-import { Input, Button, Typography, Form } from "antd";
+ import { Input, Button, Typography, Form } from "antd";
 import { useEffect } from "react";
 import { createComment, loadComments } from "../../slices/cardSlice";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
@@ -14,16 +11,22 @@ type FieldType = {
   text?: string;
 };
 
-export const CardCommentBlock: React.FC = ({ productId }) => {
+type CommentForm = {
+  userName: string;
+  text: string;
+};
+
+export const CardCommentBlock = ({ productId }: { productId: number }) => {
   const dispatch = useAppDispatch();
   const { comments } = useAppSelector((state) => state.card);
   const [form] = Form.useForm();
 
-  const date = new Date().toLocaleString();
-  const handleFinis: FormProps<FieldType>["onFinish"] = (values) => {
-    const newComment = { ...values, productId, date };
-    dispatch(createComment(newComment));
-    form.resetFields()
+  const handleFinis = (values: CommentForm) => {
+    const date = new Date().toLocaleString();
+
+    dispatch(createComment({ ...values, productId, date }));
+
+    form.resetFields();
   };
 
   useEffect(() => {

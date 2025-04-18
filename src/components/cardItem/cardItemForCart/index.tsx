@@ -1,7 +1,5 @@
-// @ts-nocheck
-
 import s from "./CardItemForCart.module.css";
-import { formatedPrice } from "../../../utils.tsx";
+import { formatedPrice, ProductType } from "../../../utils.tsx";
 import { FavoriteButton } from "../../favoriteButton/index.tsx";
 import { CardCounter } from "../../cardCouner/index.tsx";
 import { memo, useEffect, useState } from "react";
@@ -10,7 +8,7 @@ import { DeleteButton } from "../../deleteButton/index.tsx";
 import { Link } from "react-router-dom";
 import { useAppDispatch } from "../../../hooks/reduxHooks.ts";
 
-export const CardItemForCart = memo(({ product }) => {
+export const CardItemForCart = memo(({ product }: { product: ProductType }) => {
   const { id, brand, name, price, newPrice, currency, photo, quantity } =
     product;
 
@@ -37,14 +35,22 @@ export const CardItemForCart = memo(({ product }) => {
     }
   };
 
-  const renderPriceBlock = (
+  type RenderPriceBlockProps = {
+    price: number;
+    newPrice: number;
+    quantity?: number;
+    currency: string;
+    formatedPrice: (price: number) => string;
+  };
+
+  const renderPriceBlock = ({
     price,
     newPrice,
     quantity = 1,
     currency,
-    formatedPrice
-  ) => {
-    return !newPrice ? (
+    formatedPrice,
+  }: RenderPriceBlockProps) => {
+    return (newPrice < 1) ? (
       <div className={s.priceBlock}>
         <p className={s.price}>
           {formatedPrice(price * quantity)}
@@ -65,18 +71,23 @@ export const CardItemForCart = memo(({ product }) => {
     );
   };
 
-  const renderPriceForOne = (price, newPrice, currency, formatedPrice) => {
-    return !newPrice
+  const renderPriceForOne = ({
+    price,
+    newPrice,
+    currency,
+    formatedPrice,
+  }: RenderPriceBlockProps) => {
+    return (newPrice = 0)
       ? `${formatedPrice(price)} ${currency}`
       : `${formatedPrice(newPrice)} ${currency}`;
   };
 
-  const renderPriceForOneBlock = (quantity) => {
+  const renderPriceForOneBlock = (quantity: number) => {
     if (quantity > 1) {
       return (
         <p className={s.priceOneItem}>
           Цена за 1шт:{" "}
-          {renderPriceForOne(price, newPrice, currency, formatedPrice)}
+          {renderPriceForOne({ price, newPrice, currency, formatedPrice })}
         </p>
       );
     }
@@ -102,16 +113,15 @@ export const CardItemForCart = memo(({ product }) => {
           <DeleteButton onClick={() => dispatch(deleteCart(product.id))} />
         </div>
       </div>
-      {renderPriceBlock(
+      {renderPriceBlock({
         price,
         newPrice,
-        localQuantity,
+        quantity: localQuantity,
         currency,
-        formatedPrice
-      )}
+        formatedPrice,
+      })}
       <div className={s.counter}>
         <CardCounter
-          productId={product.id}
           quantity={localQuantity}
           handleChangePlusQuantity={handleChangePlusQuantity}
           handleChangeMinusQuantity={handleChangeMinusQuantity}

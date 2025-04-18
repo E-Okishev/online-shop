@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 import { Flex, Skeleton } from "antd";
 import { CardItemSkeleton } from "../../../components/cardItem/cardItemSkeleton";
 import s from '../mainPage.module.css'

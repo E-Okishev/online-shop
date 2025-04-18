@@ -1,11 +1,11 @@
-// @ts-nocheck
 import { CartIcon } from "../cartIcon/CartIcon";
 import s from "./addToCartButton.module.css";
 import { addToCart, deleteCart } from "../../slices/cartSlice";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
+import { ProductType } from "../../utils";
 
-export function AddToCartButton({ product }) {
-  const cartItems = useAppSelector((state: RootState) => state.cart.cart);
+export function AddToCartButton({ product }: { product: ProductType }) {
+  const cartItems = useAppSelector((state) => state.cart.cart);
   const dispatch = useAppDispatch();
 
   const isInCart = cartItems.some((item) => item.id === product.id);

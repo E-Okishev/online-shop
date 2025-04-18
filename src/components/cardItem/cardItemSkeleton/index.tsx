@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 import { Flex, Skeleton } from "antd";
 
 export const CardItemSkeleton = () => {

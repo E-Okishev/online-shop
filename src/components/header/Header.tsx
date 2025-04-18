@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 import logo from "../../img/logo.svg";
 import icon from "../../img/buttonIcon.svg";
 import s from "./Header.module.css";
@@ -9,19 +7,22 @@ import { CartIcon } from "../cartIcon/CartIcon";
 import { Input, Button } from "antd";
 import { memo } from "react";
 import { debounce } from "lodash";
-import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
+import { useAppSelector } from "../../hooks/reduxHooks";
+import { FilterParams } from "../../utils";
+
+type HeaderProps = FilterParams & {
+  toggleNavbar: () => void;
+};
 
 export const Header = memo(
-  ({ handleChangeFilters, toggleNavbar, searchParams }) => {
+  ({ handleChangeFilters, toggleNavbar, searchParams }: HeaderProps) => {
     const debounced = debounce(
       (e) => handleChangeFilters("q", e.target.value),
       500
     );
 
-    const { cart } = useAppSelector((state: RootState) => state.cart);
-    const { favorites } = useAppSelector((state: RootState) => state.favorite);
-
-    const dispatch = useAppDispatch();
+    const { cart } = useAppSelector((state) => state.cart);
+    const { favorites } = useAppSelector((state) => state.favorite);
 
     const productCartQuantity = cart.reduce(
       (acc, product) => acc + product.quantity,
@@ -30,7 +31,7 @@ export const Header = memo(
     const productFavoriteQuantity = favorites.reduce(
       (acc, product) => acc + product.quantity,
       0
-    );;
+    );
 
     return (
       <header className={s.header}>

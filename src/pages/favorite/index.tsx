@@ -1,19 +1,14 @@
-// @ts-nocheck
-
 import { CardItem } from "../../components/cardItem/CardItem";
 import s from "../main/mainPage.module.css";
 import { Typography } from "antd";
 import { CardItemSkeleton } from "../../components/cardItem/cardItemSkeleton";
-import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
+import { useAppSelector } from "../../hooks/reduxHooks";
 const { Title } = Typography;
 
 export const FavoritePage = () => {
-  const { favorites } = useAppSelector((state: RootState) => state.favorite);
-  const { favoritesLoading } = useAppSelector(
-    (state: RootState) => state.favorite
+  const { favorites, favoritesLoading, favoritesError } = useAppSelector(
+    (state) => state.favorite
   );
-  const { favoritesError } = useAppSelector((state: RootState) => state.favorite);
-  const dispatch = useAppDispatch();
 
   return (
     <>
