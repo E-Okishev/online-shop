@@ -37,6 +37,9 @@ export const Header = memo(
     );
 
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const closeModal = () => {
+      setIsModalOpen(false)
+    }
 
     return (
       <>
@@ -78,12 +81,8 @@ export const Header = memo(
             </div>
           </Link>
         </header>
-        <Modal
-          open={isModalOpen}
-          onOk={() => setIsModalOpen(false)}
-          destroyOnClose
-        >
-          <LoginForm />
+        <Modal open={isModalOpen} onCancel={closeModal} footer destroyOnClose>
+          <LoginForm closeModal={closeModal}/>
         </Modal>
       </>
     );

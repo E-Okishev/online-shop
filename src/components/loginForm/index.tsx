@@ -1,54 +1,112 @@
 import { Button, Form, Input, Typography, Flex } from "antd";
-import { useState } from "react";
-import { useAppDispatch } from "../../hooks/reduxHooks";
-import { registation } from "../../slices/loginSlice";
+import { useEffect, useState } from "react";
+import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
+import { registation, login } from "../../slices/loginSlice";
 import { UserType } from "../../utils";
-const { Title } = Typography;
+import { Link } from "react-router-dom";
+const { Title, Paragraph } = Typography;
 
-export const LoginForm = () => {
+export const LoginForm = ({ closeModal }: { closeModal: () => void }) => {
   const [openRegistr, setOpenRegistr] = useState(false);
+  const { user, error } = useAppSelector((state) => state.user);
 
-const dispatch = useAppDispatch()
+  useEffect(() => {
+    if (error === "Пользователь уже зарегистрирован. Войдите") {
+      setOpenRegistr(false);
+      form.resetFields();
+    }
+  }, [error]);
 
-const handleFinish = (values: UserType) => {
-  dispatch(registation(values))
-}
+  // useEffect(() => {
+  //   if (user) {
+  //     closeModal();
+  //   }
+  // }, [user]);
+
+  const dispatch = useAppDispatch();
+
+  const [form] = Form.useForm();
+
+  const handleFinish = async (values: UserType) => {
+    if (values.phone) {
+      dispatch(registation(values));
+      return;
+    }
+
+    dispatch(login(values));
+  };
 
   return (
     <>
-      <Title level={3}>{!openRegistr ? "Войти" : "Зарегистрироваться"}</Title>
-      <Form onFinish={handleFinish}>
-        {openRegistr && (
-          <Form.Item
-            name="name"
-            rules={[{ required: true, message: "Введите имя" }]}
-          >
-            <Input placeholder="Введите имя" />
-          </Form.Item>
-        )}
-        <Form.Item
-          name="login"
-          rules={[{ required: true, message: "Введите логин" }]}
-        >
-          <Input placeholder="Введите логин" />
-        </Form.Item>
-        <Form.Item
-          name="password"
-          rules={[{ required: true, min: 8, message: "Минимум 8 символов" }]}
-        >
-          <Input type="password" placeholder="Введите пароль" />
-        </Form.Item>
-        <Form.Item>
-          <Flex justify="space-between" align="center">
-            <Button type="primary" htmlType="submit">
-              {!openRegistr ? "Войти" : "Зарегистрироваться"}
-            </Button>
-            <Button type="link" onClick={() => setOpenRegistr(!openRegistr)}>
-              {!openRegistr ? "Зарегистрироваться" : "Войти"}
-            </Button>
-          </Flex>
-        </Form.Item>
-      </Form>
+      {user ? (
+        <>
+          <Title level={4}>Добро пожаловать, {user.name}</Title>
+          <Paragraph>
+            Сейчас вы можете перейти
+            <Link to="/admin"> на страницу администрирования</Link>
+          </Paragraph>
+        </>
+      ) : (
+        <>
+          <Title level={3}>
+            {!openRegistr ? "Войти" : "Зарегистрироваться"}
+          </Title>
+
+          <Form form={form} onFinish={handleFinish}>
+            {openRegistr && (
+              <>
+                <Form.Item
+                  name="name"
+                  rules={[{ required: true, message: "Введите имя", max: 64 }]}
+                >
+                  <Input placeholder="Введите имя" showCount maxLength={64} />
+                </Form.Item>
+                <Form.Item
+                  name="phone"
+                  rules={[{ required: true, message: "Введите телефон" }]}
+                >
+                  <Input
+                    placeholder="Введите телефон"
+                    showCount
+                    maxLength={64}
+                  />
+                </Form.Item>
+              </>
+            )}
+            <Form.Item
+              name="login"
+              rules={[{ required: true, message: "Введите логин", max: 64 }]}
+            >
+              <Input placeholder="Введите логин" showCount maxLength={64} />
+            </Form.Item>
+            <Form.Item
+              name="password"
+              rules={[
+                { required: true, min: 8, message: "Минимум 8 символов" },
+              ]}
+            >
+              <Input
+                type="password"
+                placeholder="Введите пароль"
+                showCount
+                minLength={8}
+                maxLength={64}
+              />
+            </Form.Item>
+            <Paragraph style={{ color: "red" }}>{error}</Paragraph>
+            <Form.Item>
+              <Flex justify="space-between" align="center">
+                <Button type="primary" htmlType="submit">
+                  {!openRegistr ? "Войти" : "Зарегистрироваться"}
+                </Button>
+                <Button type="link" onClick={() => setOpenRegistr(true)}>
+                  {!openRegistr ? "Зарегистрироваться" : "Войти"}
+                </Button>
+              </Flex>
+            </Form.Item>
+          </Form>
+        </>
+      )}
     </>
   );
 };

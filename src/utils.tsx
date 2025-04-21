@@ -25,10 +25,11 @@ export type CommentType = {
 };
 
 export type UserType = {
-  name: string;
+  name?: string;
   login: string;
+  phone?: string;
   password: string;
-  id: number;
+  id?: number;
 };
 
 export const salePercent = (price: number, newPrice: number): number => {
