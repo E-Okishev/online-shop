@@ -1,5 +1,10 @@
 import s from "./CardItemForCart.module.css";
-import { formatedPrice, ProductType } from "../../../utils.tsx";
+import {
+  formatedPrice,
+  ProductType,
+  RenderPriceBlockProps,
+  renderPriceForOne,
+} from "../../../utils.tsx";
 import { FavoriteButton } from "../../buttons/favoriteButton/index.tsx";
 import { CardCounter } from "../../cardCouner/index.tsx";
 import { memo, useEffect, useState } from "react";
@@ -35,14 +40,6 @@ export const CardItemForCart = memo(({ product }: { product: ProductType }) => {
     }
   };
 
-  type RenderPriceBlockProps = {
-    price: number;
-    newPrice: number;
-    quantity?: number;
-    currency: string;
-    formatedPrice: (price: number) => string;
-  };
-
   const renderPriceBlock = ({
     price,
     newPrice,
@@ -50,7 +47,7 @@ export const CardItemForCart = memo(({ product }: { product: ProductType }) => {
     currency,
     formatedPrice,
   }: RenderPriceBlockProps) => {
-    return (newPrice < 1) ? (
+    return newPrice < 1 ? (
       <div className={s.priceBlock}>
         <p className={s.price}>
           {formatedPrice(price * quantity)}
@@ -69,17 +66,6 @@ export const CardItemForCart = memo(({ product }: { product: ProductType }) => {
         </p>
       </div>
     );
-  };
-
-  const renderPriceForOne = ({
-    price,
-    newPrice,
-    currency,
-    formatedPrice,
-  }: RenderPriceBlockProps) => {
-    return (newPrice = 0)
-      ? `${formatedPrice(price)} ${currency}`
-      : `${formatedPrice(newPrice)} ${currency}`;
   };
 
   const renderPriceForOneBlock = (quantity: number) => {

@@ -45,7 +45,7 @@ export const Navbar = ({ handleChangeFilters, searchParams }: FilterParams) => {
               : `${s.listItem}`
           }
         >
-          Игровые приставки
+          Игровые консоли
         </li>
       </ul>
       <div className={s.filterPrice}>

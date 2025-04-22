@@ -10,7 +10,7 @@ import { AddToCartButton } from "../../components/buttons/addToCartButton/index.
 import { Typography } from "antd";
 import { CardCommentBlock } from "../../components/cardCommentBlock/index.tsx";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks.ts";
-const { Title } = Typography;
+const { Title, Paragraph } = Typography;
 
 export const CardPage = () => {
   const { id } = useParams();
@@ -29,7 +29,8 @@ export const CardPage = () => {
     return <div>Loading...</div>;
   }
 
-  const { brand, name, price, newPrice, currency, rating, photo } = product;
+  const { brand, name, price, newPrice, currency, rating, photo, description } =
+    product;
 
   return (
     <>
@@ -58,6 +59,7 @@ export const CardPage = () => {
               </p>
             )}
           </div>
+          <Paragraph>{description}</Paragraph>
           <div className={s.sale}>
             {!newPrice ? (
               <div className={s.flex}>

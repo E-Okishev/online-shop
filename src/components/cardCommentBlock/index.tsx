@@ -1,5 +1,5 @@
 import s from "./cardCommentBlock.module.css";
- import { Input, Button, Typography, Form } from "antd";
+import { Input, Button, Typography, Form, message } from "antd";
 import { useEffect } from "react";
 import { createComment, loadComments } from "../../slices/cardSlice";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
@@ -25,7 +25,7 @@ export const CardCommentBlock = ({ productId }: { productId: number }) => {
     const date = new Date().toLocaleString();
 
     dispatch(createComment({ ...values, productId, date }));
-
+    message.success("Комментарий добавлен");
     form.resetFields();
   };
 
@@ -38,12 +38,16 @@ export const CardCommentBlock = ({ productId }: { productId: number }) => {
       <Title level={3}>Комментарии ({comments.length})</Title>
       <div className={s.commentBlock}>
         <div className={s.form}>
-          <Form form={form} onFinish={handleFinis}>
-            <Form.Item<FieldType> name="userName" rules={[{ required: true }]}>
+          <Form form={form} onFinish={handleFinis} layout="vertical">
+            <Form.Item<FieldType>
+              name="userName"
+              label="Ваше имя"
+              rules={[{ required: true }]}
+            >
               <Input placeholder="Ваше имя" />
             </Form.Item>
 
-            <Form.Item<FieldType> name="text">
+            <Form.Item<FieldType> name="text" label="Комментарий">
               <TextArea
                 rows={4}
                 placeholder="Текст комментария"

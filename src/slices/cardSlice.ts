@@ -2,6 +2,19 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { BASE_URL } from "../App";
 import { CommentType, ProductType } from "../utils";
 
+export const createProduct = createAsyncThunk<void, ProductType>(
+  "products/createProduct",
+  async (product) => {
+    await fetch(`${BASE_URL}/products`, {
+      method: "POST",
+      body: JSON.stringify(product),
+      headers: {
+        "Content-type": "application/json",
+      },
+    });
+  }
+);
+
 export const loadProduct = createAsyncThunk<ProductType, string>(
   "products/loadProduct",
   async (id) => {

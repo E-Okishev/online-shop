@@ -17,12 +17,6 @@ export const LoginForm = ({ closeModal }: { closeModal: () => void }) => {
     }
   }, [error]);
 
-  // useEffect(() => {
-  //   if (user) {
-  //     closeModal();
-  //   }
-  // }, [user]);
-
   const dispatch = useAppDispatch();
 
   const [form] = Form.useForm();
@@ -41,10 +35,11 @@ export const LoginForm = ({ closeModal }: { closeModal: () => void }) => {
       {user ? (
         <>
           <Title level={4}>Добро пожаловать, {user.name}</Title>
-          <Paragraph>
-            Сейчас вы можете перейти
-            <Link to="/admin"> на страницу администрирования</Link>
-          </Paragraph>
+          <Link to="/admin">
+            <Button type="primary" onClick={() => closeModal()}>
+              На страницу администрирования
+            </Button>
+          </Link>
         </>
       ) : (
         <>
@@ -52,17 +47,19 @@ export const LoginForm = ({ closeModal }: { closeModal: () => void }) => {
             {!openRegistr ? "Войти" : "Зарегистрироваться"}
           </Title>
 
-          <Form form={form} onFinish={handleFinish}>
+          <Form form={form} onFinish={handleFinish} layout="vertical">
             {openRegistr && (
               <>
                 <Form.Item
                   name="name"
+                  label="Ваше имя"
                   rules={[{ required: true, message: "Введите имя", max: 64 }]}
                 >
                   <Input placeholder="Введите имя" showCount maxLength={64} />
                 </Form.Item>
                 <Form.Item
                   name="phone"
+                  label="Ваш телефон"
                   rules={[{ required: true, message: "Введите телефон" }]}
                 >
                   <Input
@@ -75,12 +72,14 @@ export const LoginForm = ({ closeModal }: { closeModal: () => void }) => {
             )}
             <Form.Item
               name="login"
+              label="Ваш логин"
               rules={[{ required: true, message: "Введите логин", max: 64 }]}
             >
               <Input placeholder="Введите логин" showCount maxLength={64} />
             </Form.Item>
             <Form.Item
               name="password"
+              label="Ваш пароль"
               rules={[
                 { required: true, min: 8, message: "Минимум 8 символов" },
               ]}

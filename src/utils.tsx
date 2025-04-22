@@ -7,6 +7,7 @@ export type ProductType = {
   id: number;
   brand: string;
   name: string;
+  description?: string;
   price: number;
   newPrice: number;
   currency: string;
@@ -40,11 +41,30 @@ export const formatedPrice = (price: number): string => {
   return price.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1\u2009");
 };
 
+export type RenderPriceBlockProps = {
+  price: number;
+  newPrice: number;
+  quantity?: number;
+  currency: string;
+  formatedPrice: (price: number) => string;
+};
+
+export const renderPriceForOne = ({
+  price,
+  newPrice,
+  currency,
+  formatedPrice,
+}: RenderPriceBlockProps) => {
+  return newPrice < 1
+    ? `${formatedPrice(price)} ${currency}`
+    : `${formatedPrice(newPrice)} ${currency}`;
+};
+
 export const declension = (value: number): string => {
-  const words = ["товар", "товара", "товаров"];
+  const words: string[] = ["товар", "товара", "товаров"];
   const num = value % 10;
 
-  let word;
+  let word: string;
   if (value > 10 && value < 20) {
     word = words[2];
   } else if (num > 1 && num < 5) {

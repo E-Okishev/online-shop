@@ -1,3 +1,4 @@
+import "@ant-design/v5-patch-for-react-19";
 import { useCallback, useEffect, useState } from "react";
 import s from "./App.module.css";
 import { Route, Routes, useSearchParams } from "react-router-dom";
@@ -12,6 +13,7 @@ import { CardPage } from "./pages/cardPage";
 import { Drawer } from "antd";
 import { loadCart } from "./slices/cartSlice";
 import { useAppDispatch } from "./hooks/reduxHooks";
+import { AdminPage } from "./pages/adminPage";
 
 export const BASE_URL = "http://localhost:5000";
 
@@ -33,7 +35,7 @@ export const App = () => {
     } else {
       newParams.set(key, value);
     }
-    
+
     if (key !== "_page") {
       newParams.set("_page", "1");
     }
@@ -89,6 +91,7 @@ export const App = () => {
           <Route path="/favorites" element={<FavoritePage />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/product/:id" element={<CardPage />} />
+          <Route path="/admin" element={<AdminPage />} />
           <Route path="*" element={<h1>404</h1>} />
         </Routes>
       </main>
