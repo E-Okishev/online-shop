@@ -28,7 +28,7 @@ export const LoginForm = ({ closeModal }: { closeModal: () => void }) => {
     }
 
     dispatch(login(values));
-  };
+  };  
 
   return (
     <>

@@ -1,7 +1,5 @@
 import { useParams } from "react-router-dom";
 import s from "./CardPage.module.css";
-import { loadProduct } from "../../slices/cardSlice";
-import { useEffect } from "react";
 import star from "../../img/rateStar.svg";
 import { formatedPrice, salePercent } from "../../utils.tsx";
 import original from "../../img/original.svg";
@@ -9,22 +7,13 @@ import { FavoriteButton } from "../../components/buttons/favoriteButton/index.ts
 import { AddToCartButton } from "../../components/buttons/addToCartButton/index.tsx";
 import { Typography } from "antd";
 import { CardCommentBlock } from "../../components/cardCommentBlock/index.tsx";
-import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks.ts";
+import { useGetProductQuery } from "../../services/productsApi.ts";
 const { Title, Paragraph } = Typography;
 
 export const CardPage = () => {
   const { id } = useParams();
 
-  const dispatch = useAppDispatch();
-
-  const { product } = useAppSelector((state) => state.card);
-
-  useEffect(() => {
-    if (id) {
-      dispatch(loadProduct(id));
-    }
-  }, []);
-
+  const {data: product} = useGetProductQuery(id!, {skip: !id })
   if (!product) {
     return <div>Loading...</div>;
   }

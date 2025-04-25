@@ -1,25 +1,20 @@
 import "@ant-design/v5-patch-for-react-19";
-import { useCallback, useEffect, useState } from "react";
-import s from "./App.module.css";
+import { useCallback, useEffect } from "react";
 import { Route, Routes, useSearchParams } from "react-router-dom";
-import { Header } from "./components/header/Header";
-import { Navbar } from "./components/navbar/Navbar";
-import { fetchFavorites } from "./slices/favoritesSlice";
 import { fetchProducts } from "./slices/productsSlice";
 import { FavoritePage } from "./pages/favorite";
 import { MainPage } from "./pages/main";
 import { CartPage } from "./pages/cartPage";
 import { CardPage } from "./pages/cardPage";
-import { Drawer } from "antd";
-import { loadCart } from "./slices/cartSlice";
 import { useAppDispatch } from "./hooks/reduxHooks";
 import { AdminPage } from "./pages/adminPage";
+import { HeaderBlock } from "./pages/headerBlock";
+import { fetchFavorites } from "./slices/favoritesSlice";
+import { loadCart } from "./slices/cartSlice";
 
 export const BASE_URL = "http://localhost:5000";
 
 export const App = () => {
-  const [showNawbar, setShowNawbar] = useState<boolean>(false);
-
   let [searchParams, setSearchParams] = useSearchParams();
 
   const dispatch = useAppDispatch();
@@ -49,41 +44,26 @@ export const App = () => {
     }
   }, [searchParams]);
 
+
   useEffect(() => {
-    newParams.set("_page", "1");
-    setSearchParams(newParams);
     dispatch(fetchFavorites());
     dispatch(loadCart());
   }, []);
 
-  const toggleNavbar = useCallback(() => {
-    setShowNawbar(!showNawbar);
-  }, []);
-
   return (
     <>
-      <Header
+      <HeaderBlock
         handleChangeFilters={handleChangeFilters}
-        toggleNavbar={toggleNavbar}
         searchParams={searchParams}
       />
-      <Drawer
-        open={showNawbar}
-        placement="left"
-        onClose={() => setShowNawbar(false)}
-      >
-        <Navbar
-          handleChangeFilters={handleChangeFilters}
-          searchParams={searchParams}
-        />
-      </Drawer>
-      <main className={s.main}>
+      <main style={{ padding: "1rem" }}>
         <Routes>
           <Route
             path="/"
             element={
               <MainPage
                 handleChangeFilters={handleChangeFilters}
+                setSearchParams={setSearchParams}
                 searchParams={searchParams}
               />
             }

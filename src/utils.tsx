@@ -1,6 +1,9 @@
+import { SetURLSearchParams } from "react-router-dom";
+
 export type FilterParams = {
   handleChangeFilters: (key: string, value: string) => void;
   searchParams: URLSearchParams;
+  setSearchParams?: SetURLSearchParams;
 };
 
 export type ProductType = {
@@ -22,7 +25,7 @@ export type CommentType = {
   text: string;
   productId: number;
   date: string;
-  id: number;
+  id?: number;
 };
 
 export type UserType = {

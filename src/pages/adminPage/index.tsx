@@ -1,4 +1,4 @@
-import { useAppDispatch } from "../../hooks/reduxHooks";
+import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
 import { createProduct } from "../../slices/cardSlice";
 import { ProductType } from "../../utils";
 import s from "./AdminPage.module.css";
@@ -12,15 +12,16 @@ import {
   InputNumber,
   message,
 } from "antd";
-const { Title } = Typography;
+const { Title, Paragraph } = Typography;
 const { TextArea } = Input;
 
 export const AdminPage = () => {
   const [form] = Form.useForm();
   const dispatch = useAppDispatch();
 
+  const { user } = useAppSelector((state) => state.user);
+
   const handleFinish = (values: ProductType) => {
-    console.log(values);
     dispatch(createProduct({ ...values, quantity: 1, currency: "₽" }));
     message.success("Товар добавлен");
     form.resetFields();
@@ -28,7 +29,11 @@ export const AdminPage = () => {
 
   return (
     <>
-      <Title>Создание товара</Title>
+      <Title>Админ панель</Title>
+      <Paragraph>Имя: {user?.name}</Paragraph>
+      <Paragraph>Логин: {user?.login}</Paragraph>
+      <Paragraph>Телефон: {user?.phone}</Paragraph>
+      <Title level={2}>Создание товара</Title>
       <div className={s.cardInfo}>
         <Form form={form} layout="vertical" onFinish={handleFinish}>
           <Form.Item

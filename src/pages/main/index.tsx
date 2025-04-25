@@ -3,12 +3,16 @@ import s from "./mainPage.module.css";
 import { Sort } from "../../components/sort/Sort";
 import { Typography, Pagination } from "antd";
 import { MainSkeleton } from "./mainSkeleton";
-import { useAppSelector } from "../../hooks/reduxHooks";
+import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
 const { Title } = Typography;
 import { FilterParams } from "../../utils";
+import { useEffect } from "react";
+import { fetchFavorites } from "../../slices/favoritesSlice";
+import { loadCart } from "../../slices/cartSlice";
 
 export const MainPage = ({
   searchParams,
+  setSearchParams,
   handleChangeFilters,
 }: FilterParams) => {
   const { products, productsLoading } = useAppSelector(
@@ -22,6 +26,15 @@ export const MainPage = ({
   };
 
   const categoryKey = searchParams.get("category");
+  const newParams = new URLSearchParams(searchParams);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    newParams.set("_page", "1");
+    setSearchParams?.(newParams);
+    dispatch(fetchFavorites());
+    dispatch(loadCart());
+  }, []);
 
   return (
     <>

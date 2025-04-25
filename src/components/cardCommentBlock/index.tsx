@@ -1,8 +1,9 @@
 import s from "./cardCommentBlock.module.css";
 import { Input, Button, Typography, Form, message } from "antd";
-import { useEffect } from "react";
-import { createComment, loadComments } from "../../slices/cardSlice";
-import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
+import {
+  useAddCommentMutation,
+  useGetCommentsQuery,
+} from "../../services/commentsApi";
 const { Title } = Typography;
 const { TextArea } = Input;
 
@@ -17,25 +18,22 @@ type CommentForm = {
 };
 
 export const CardCommentBlock = ({ productId }: { productId: number }) => {
-  const dispatch = useAppDispatch();
-  const { comments } = useAppSelector((state) => state.card);
   const [form] = Form.useForm();
+
+  const { data } = useGetCommentsQuery(productId);
+  const [addComment] = useAddCommentMutation();
 
   const handleFinis = (values: CommentForm) => {
     const date = new Date().toLocaleString();
 
-    dispatch(createComment({ ...values, productId, date }));
+    addComment({ ...values, productId, date });
     message.success("Комментарий добавлен");
     form.resetFields();
   };
 
-  useEffect(() => {
-    dispatch(loadComments(productId));
-  }, [productId]);
-
   return (
     <div className={s.cardComment}>
-      <Title level={3}>Комментарии ({comments.length})</Title>
+      <Title level={3}>Комментарии ({data?.length})</Title>
       <div className={s.commentBlock}>
         <div className={s.form}>
           <Form form={form} onFinish={handleFinis} layout="vertical">
@@ -63,7 +61,7 @@ export const CardCommentBlock = ({ productId }: { productId: number }) => {
           </Form>
         </div>
         <ul className={s.commentList}>
-          {comments.map((comment) => (
+          {data?.map((comment) => (
             <li key={comment.id} className={s.commentElem}>
               <div className={s.commentAutor}>
                 <div className={s.commentAvatr}>
